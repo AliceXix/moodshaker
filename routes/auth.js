@@ -14,21 +14,21 @@ const User = require("../models/User.model");
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
-router.get("/signup", isLoggedOut, (req, res) => {
-  res.render("auth/signup");
+router.get("/", isLoggedOut, (req, res) => {
+  res.render("auth/register");
 });
 
-router.post("/signup", isLoggedOut, (req, res) => {
-  const { username, password } = req.body;
+router.post("/", isLoggedOut, (req, res) => {
+  const { name, username, mail, password } = req.body;
 
   if (!username) {
     return res
       .status(400)
-      .render("auth/signup", { errorMessage: "Please provide your username." });
+      .render("auth/register", { errorMessage: "Please provide your username." });
   }
 
   if (password.length < 8) {
-    return res.status(400).render("auth/signup", {
+    return res.status(400).render("auth/register", {
       errorMessage: "Your password needs to be at least 8 characters long.",
     });
   }
@@ -51,7 +51,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
     if (found) {
       return res
         .status(400)
-        .render("auth.signup", { errorMessage: "Username already taken." });
+        .render("auth.signup", { errorMessage: "Username already taken." }); // TODO
     }
 
     // if user is not found, create a new user - start with hashing the password
@@ -61,7 +61,9 @@ router.post("/signup", isLoggedOut, (req, res) => {
       .then((hashedPassword) => {
         // Create a user and save it in the database
         return User.create({
+          name,
           username,
+          mail,
           password: hashedPassword,
         });
       })
@@ -74,17 +76,17 @@ router.post("/signup", isLoggedOut, (req, res) => {
         if (error instanceof mongoose.Error.ValidationError) {
           return res
             .status(400)
-            .render("auth/signup", { errorMessage: error.message });
+            .render("auth/register", { errorMessage: error.message });
         }
         if (error.code === 11000) {
-          return res.status(400).render("auth/signup", {
+          return res.status(400).render("auth/register", {
             errorMessage:
               "Username need to be unique. The username you chose is already in use.",
           });
         }
         return res
           .status(500)
-          .render("auth/signup", { errorMessage: error.message });
+          .render("auth/register", { errorMessage: error.message });
       });
   });
 });
@@ -129,7 +131,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
         }
         req.session.user = user;
         // req.session.user = user._id; // ! better and safer but in this case we saving the entire user object
-        return res.redirect("/");
+        return res.redirect("/mood-shaker");
       });
     })
 
