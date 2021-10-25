@@ -90,7 +90,7 @@ router.post("/", /*isLoggedOut,*/ (req, res) => {
           .render("auth/register", { errorMessage: error.message });
       });
  });
-})
+});
 
 router.get("/login", /*isLoggedOut,*/ (req, res) => {
   res.render("auth/login");
@@ -131,25 +131,22 @@ router.post("/login", /*isLoggedOut,*/ (req, res, next) => {
         console.log(`>>>>>>>>>> ${user.password}`)
           console.log(`>>>>>>>>>> ${isSamePassword}`)
         if (!isSamePassword) {
-          return res.send(`help`)
-            // .status(400)
-            //.render("auth/login", { errorMessage: "Wrong credentials." });
+          return res
+            .status(400)
+            .render("auth/login", { errorMessage: "Wrong credentials." });
         }
-        // req.session.user = user;
-        // req.session.user = user._id; // ! better and safer but in this case we saving the entire user object
+         req.session.user = user;
+         req.session.user = user._id; // ! better and safer but in this case we saving the entire user object
         return res.redirect("/mood-shaker");
       });
-
-  })
-})
-
-//     .catch((err) => {
-//       // in this case we are sending the error handling to the error handling middleware that is defined in the error handling file
-//       // you can just as easily run the res.status that is commented out below
-//       next(err);
-//       // return res.status(500).render("login", { errorMessage: err.message });
-//     });
-// });
+   })
+    .catch((err) => {
+      // in this case we are sending the error handling to the error handling middleware that is defined in the error handling file
+      // you can just as easily run the res.status that is commented out below
+      next(err);
+       return res.status(500).render("login", { errorMessage: err.message });
+    });
+});
 
 router.get("/logout", isLoggedIn, (req, res) => {
   req.session.destroy((err) => {
