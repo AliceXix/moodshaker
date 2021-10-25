@@ -3,8 +3,10 @@ const User = require("../models//User.model");
 const Activity = require("../models/Activity.model");
 const Mood = require("../models/Mood.model");
 const EnergyLvl = require("../models/EnergyLvl.model");
-
+const pushActivity = require("../middleware/pushActivity");
+const filterActivities = require("../middleware/filterActivities");
  
+
 router.get("/mood-shaker", (req, res, next)=>{
   res.render("questions")
 });
@@ -50,7 +52,8 @@ router.post("/activities/:id/delete", (req, res, next)=>{
 router.get("/user/:id/dashboard", (req, res, next)=>{
   User.findById(req.params.id)
   .then(()=>{
-    // get user.activities/mood/energyLvl from DB TODO
+    // get user.activities/mood/energyLvl from DB
+    //TODO
     res.render("dashboard", userInfos)
   })
   .catch()
@@ -67,7 +70,6 @@ router.get("/user/:id/created-activities", (req, res, next)=>{
 });
 
 router.get("/create", (req, res, next)=>{
-  //res.send(`yuohouuuuu`)
   Mood.find()
   //EnergyLvl.find()
   //TODO: bug to come
