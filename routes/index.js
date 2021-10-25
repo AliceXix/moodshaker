@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const User = require("../models//User.model");
 const Activity = require("../models/Activity.model");
+const Mood = require("../models/Mood.model");
+const EnergyLvl = require("../models/EnergyLvl.model");
 
  
 router.get("/mood-shaker", (req, res, next)=>{
@@ -11,8 +13,14 @@ router.post("/mood-shaker", (req, res, next)=>{
   res.send("send answers to DB")//TODO
 });
 
-router.get("/activities", filterActivities, (req, res, next)=>{
-  res.render("activities")  
+router.get("/activities", /*filterActivities*/ (req, res, next)=>{
+  Activity.find()
+  .then((activitiesFromDB) => {
+    res.render("activities", {data: activitiesFromDB})
+  })
+  .catch(err => {
+    console.log(`An error has occured getting activities from DB: ${err}`)
+  })
 });
 
 router.get("/activities/:id/details", (req, res, next)=>{
@@ -25,7 +33,7 @@ router.get("/activities/:id/details", (req, res, next)=>{
   })
 });
 
-router.post("/activities/:id/details", pushActivity, (req, res, next)=>{
+router.post("/activities/:id/details", /*pushActivity*/ (req, res, next)=>{
   res.send("save into DB") //TODO
 });
 
@@ -43,7 +51,7 @@ router.get("/user/:id/dashboard", (req, res, next)=>{
   User.findById(req.params.id)
   .then(()=>{
     // get user.activities/mood/energyLvl from DB TODO
-    res.render("dashboard")
+    res.render("dashboard", userInfos)
   })
   .catch()
 });
@@ -51,14 +59,21 @@ router.get("/user/:id/dashboard", (req, res, next)=>{
 router.get("/user/:id/created-activities", (req, res, next)=>{
   User.findById(req.params.id)
   .then(()=>{
-    // get user.created-activities TODO
-    res.render("created-activities")
+    // get user.created-activities
+    //TODO;
+    res.render("created-activities", {data: createdActivitiesByUserFromDB})
   })
   .catch()
 });
 
 router.get("/create", (req, res, next)=>{
-   res.render("create")
+  //res.send(`yuohouuuuu`)
+  Mood.find()
+  //EnergyLvl.find()
+  //TODO: bug to come
+  .then  ((moodsFromDB, energyLvlsFromDB) => {
+    res.render("create", { data: moodsFromDB })
+  })
 });
 
 router.post("/create", (req, res, next)=>{
