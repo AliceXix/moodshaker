@@ -12,7 +12,6 @@ const userSchema = new Schema(
     energyLvls: [Number],
     role: String,
     favourites: [String],
-    // test comment
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
