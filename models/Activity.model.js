@@ -1,6 +1,5 @@
 const { Schema, model } = require("mongoose");
 
-// TODO: Please make sure you edit the user model to whatever makes sense in this case
 const activitySchema = new Schema(
   {
     author: {type: Schema.Types.ObjectId, ref: 'User'},      
@@ -13,7 +12,6 @@ const activitySchema = new Schema(
   },
 
   {
-    // this second object adds extra properties: `createdAt` and `updatedAt`
     timestamps: true,
   }
 );
