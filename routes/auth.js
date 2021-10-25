@@ -10,16 +10,16 @@ const saltRounds = 10;
 // Require the User model in order to interact with the database
 const User = require("../models/User.model");
 
-// Require necessary (isLoggedOut and isLiggedIn) middleware in order to control access to specific routes
+// Require necessary (isLoggedOut and isLoggedIn) middleware in order to control access to specific routes
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
-router.get("/", isLoggedOut, (req, res) => {
+router.get("/", /*isLoggedOut,*/ (req, res) => {
   res.render("auth/register");
 });
 
-router.post("/", isLoggedOut, (req, res) => {
-  const { name, username, mail, password } = req.body;
+router.post("/", /*isLoggedOut,*/ (req, res) => {
+  const { username, mail, password } = req.body;
 
   if (!username) {
     return res
@@ -32,7 +32,7 @@ router.post("/", isLoggedOut, (req, res) => {
       errorMessage: "Your password needs to be at least 8 characters long.",
     });
   }
-
+//-------------CODE BELLOW IS TO KEEP COMMENTED-----------//
   //   ! This use case is using a regular expression to control for special characters and min length
   /*
   const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
@@ -44,8 +44,9 @@ router.post("/", isLoggedOut, (req, res) => {
     });
   }
   */
+//---------CODE ABOVE IS TO KEEP COMMENTED--------//
 
-  // Search the database for a user with the username submitted in the form
+  //Search the database for a user with the username submitted in the form
   User.findOne({ username }).then((found) => {
     // If the user is found, send the message username is taken
     if (found) {
@@ -54,23 +55,23 @@ router.post("/", isLoggedOut, (req, res) => {
         .render("auth.signup", { errorMessage: "Username already taken." }); // TODO
     }
 
-    // if user is not found, create a new user - start with hashing the password
+    //if user is not found, create a new user - start with hashing the password
     return bcrypt
       .genSalt(saltRounds)
       .then((salt) => bcrypt.hash(password, salt))
       .then((hashedPassword) => {
-        // Create a user and save it in the database
+        //Create a user and save it in the database
         return User.create({
-          name,
           username,
           mail,
           password: hashedPassword,
-        });
+        })
+
       })
       .then((user) => {
         // Bind the user to the session object
         req.session.user = user;
-        res.redirect("/");
+        res.redirect("/mood-shaker");
       })
       .catch((error) => {
         if (error instanceof mongoose.Error.ValidationError) {
@@ -88,20 +89,20 @@ router.post("/", isLoggedOut, (req, res) => {
           .status(500)
           .render("auth/register", { errorMessage: error.message });
       });
-  });
-});
+ });
+})
 
-router.get("/login", isLoggedOut, (req, res) => {
+router.get("/login", /*isLoggedOut,*/ (req, res) => {
   res.render("auth/login");
 });
 
-router.post("/login", isLoggedOut, (req, res, next) => {
+router.post("/login", /*isLoggedOut,*/ (req, res, next) => {
   const { username, password } = req.body;
 
   if (!username) {
     return res
       .status(400)
-      .render("auth/login", { errorMessage: "Please provide your username." });
+      .render("auth/register", { errorMessage: "Please provide your username." });
   }
 
   // Here we use the same logic as above
@@ -122,26 +123,33 @@ router.post("/login", isLoggedOut, (req, res, next) => {
           .render("auth/login", { errorMessage: "Wrong credentials." });
       }
 
-      // If user is found based on the username, check if the in putted password matches the one saved in the database
-      bcrypt.compare(password, user.password).then((isSamePassword) => {
+      //If user is found based on the username, check if the in putted password matches the one saved in the database
+      bcrypt
+        .compare(password, user.password)
+        .then((isSamePassword) => {
+        console.log(`>>>>>>>>>>>>>>> ${password}`)
+        console.log(`>>>>>>>>>> ${user.password}`)
+          console.log(`>>>>>>>>>> ${isSamePassword}`)
         if (!isSamePassword) {
-          return res
-            .status(400)
-            .render("auth/login", { errorMessage: "Wrong credentials." });
+          return res.send(`help`)
+            // .status(400)
+            //.render("auth/login", { errorMessage: "Wrong credentials." });
         }
-        req.session.user = user;
+        // req.session.user = user;
         // req.session.user = user._id; // ! better and safer but in this case we saving the entire user object
         return res.redirect("/mood-shaker");
       });
-    })
 
-    .catch((err) => {
-      // in this case we are sending the error handling to the error handling middleware that is defined in the error handling file
-      // you can just as easily run the res.status that is commented out below
-      next(err);
-      // return res.status(500).render("login", { errorMessage: err.message });
-    });
-});
+  })
+})
+
+//     .catch((err) => {
+//       // in this case we are sending the error handling to the error handling middleware that is defined in the error handling file
+//       // you can just as easily run the res.status that is commented out below
+//       next(err);
+//       // return res.status(500).render("login", { errorMessage: err.message });
+//     });
+// });
 
 router.get("/logout", isLoggedIn, (req, res) => {
   req.session.destroy((err) => {

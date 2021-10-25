@@ -123,6 +123,10 @@ router.get("/activity/:id/edit", (req, res, next)=>{
   .catch((err)=>{
     console.log("error getting activity details from DB");
   })
+});
+
+router.get('/discover', (req, res, next) => {
+  res.render("discover")
 })
 
 module.exports = router;
