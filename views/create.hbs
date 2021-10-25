@@ -1,0 +1,34 @@
+<form action="/activities/create" method="post">
+    <label>Title
+        <input type="text" name="title"/>
+    </label>
+
+    <label>Mood
+        <select name="mood">
+            {{#each data}}
+                <option value="{{this.name}}"></option>
+            {{/each}}
+        </select>
+    </label>
+    //TODO: bug to come
+
+    <label>Energy Level
+        <select name="energyLvl">
+            {{#each data2}}
+            <option value="{{this.name}}"></option>
+            {{/each}}
+        </select>
+    </label>
+
+    <label>Description
+        <input type="text" name="description" />
+    </label>
+
+    <label>Image
+        <input type="image" name="image"/>
+    </label>
+
+    <button type="submit">Create new activity!</button>
+
+    
+</form>

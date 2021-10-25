@@ -1,0 +1,19 @@
+<div class="activity-details">
+
+    <h1>{{activityFromDB.title}}</h1>
+    <hr>
+    <img src="{{activityFromDB.image}}" alt="image of an activity"/>
+    <p>{{activityFromDB.description}}</p>
+    <p>{{activityFromDB.author}}</p>
+
+</div>
+
+<button type="submit">
+    <a href="/activity/{{activityFromDB.id}}/edit">Edit this activity</a>
+</button>
+
+<button type="submit">Delete this activity</button>
+
+<button type="submit">
+    <a href="/activities">Take me back</a>
+</button>
