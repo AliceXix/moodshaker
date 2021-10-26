@@ -1,19 +1,19 @@
 const router = require("express").Router();
 const User = require("../models//User.model");
 const Activity = require("../models/Activity.model");
-//const pushActivity = require("../middleware/pushActivity");
-//const filterActivities = require("../middleware/filterActivities");
+const isLoggedIn = require("../middleware/isLoggedIn");
+const isLoggedOut = require("../middleware/isLoggedOut");
  
 
-router.get("/mood-shaker", (req, res, next)=>{
+router.get("/mood-shaker", isLoggedIn, (req, res, next)=>{
   res.render("questions")
 });
 
-router.post("/mood-shaker", (req, res, next)=>{
+router.post("/mood-shaker", isLoggedIn, (req, res, next)=>{
   res.send("send answers to DB")//TODO
 });
 
-router.get("/activities", /*filterActivities*/ (req, res, next)=>{
+router.get("/activities", isLoggedIn, /*filterActivities*/ (req, res, next)=>{
   Activity.find()
   .then((activitiesFromDB) => {
     res.render("activities", {data: activitiesFromDB})
@@ -23,7 +23,8 @@ router.get("/activities", /*filterActivities*/ (req, res, next)=>{
   })
 });
 
-router.get("/activities/:id/details", (req, res, next)=>{
+
+router.get("/activities/:id/details", isLoggedIn, (req, res, next)=>{
   Activity.findById(req.params.id)
   .then((activityFromDB)=>{
     res.render("details", activityFromDB)
@@ -33,11 +34,11 @@ router.get("/activities/:id/details", (req, res, next)=>{
   })
 });
 
-router.post("/activities/:id/details", /*pushActivity*/ (req, res, next)=>{
+router.post("/activities/:id/details", isLoggedIn, /*pushActivity*/ (req, res, next)=>{
   res.send("save into DB") //TODO
 });
 
-router.post("/activities/:id/delete", (req, res, next)=>{
+router.post("/activities/:id/delete", isLoggedIn, (req, res, next)=>{
   Activity.findByIdAndRemove(req.params.id)
   .then(()=>{
     res.redirect("/activities")
@@ -47,9 +48,9 @@ router.post("/activities/:id/delete", (req, res, next)=>{
   })
 });
 
-router.get("/user/:id/dashboard", (req, res, next)=>{
+router.get("/user/:id/dashboard", isLoggedIn, (req, res, next)=>{
   User.findById(req.params.id)
-  .then(()=>{
+    .then((userInfos)=>{
     // get user.activities/mood/energyLvl from DB
     //TODO
     res.render("dashboard", userInfos)
@@ -57,7 +58,7 @@ router.get("/user/:id/dashboard", (req, res, next)=>{
   .catch()
 });
 
-router.get("/user/:id/created-activities", (req, res, next)=>{
+router.get("/user/:id/created-activities", isLoggedIn, (req, res, next)=>{
   User.findById(req.params.id)
   .then(()=>{
     // get user.created-activities
@@ -67,11 +68,11 @@ router.get("/user/:id/created-activities", (req, res, next)=>{
   .catch()
 });
 
-router.get("/create", (req, res, next)=>{
+router.get("/create", isLoggedIn, (req, res, next)=>{
     res.render("create")
   })
 
-router.post("/create", (req, res, next)=>{
+router.post("/create", isLoggedIn, (req, res, next)=>{
   const {
     author,
     mood,
@@ -88,7 +89,7 @@ router.post("/create", (req, res, next)=>{
   })
 });
 
-router.get("/activity/:id/edit", (req, res, next)=>{
+router.get("/activity/:id/edit", isLoggedIn, (req, res, next)=>{
 
   const {
     author,
