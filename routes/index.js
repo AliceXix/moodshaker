@@ -25,7 +25,7 @@ router.get("/mood-giver", (req, res, next) => {
   .then((allActivitiesFromDB) => {
     newArr = []
     allActivitiesFromDB.forEach(elm => {
-      if (elm.mood === req.query.mood ) {
+      if (elm.mood === req.query.mood && elm.energyLvl == req.query.energyLvl) {
         newArr.push(elm)
       }
     })
