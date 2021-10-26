@@ -62,17 +62,20 @@ router.get("/user/:id/dashboard", isLoggedIn, (req, res, next)=>{
     //TODO
     res.render("dashboard", userInfos)
   })
-  .catch()
+  .catch(err => {
+    console.log(`An error has occured rendering the dashboard: ${err}`)
+  })
 });
 
 router.get("/user/:id/created-activities", isLoggedIn, (req, res, next)=>{
-  User.findById(req.params.id)
-  .then(()=>{
-    // get user.created-activities
-    //TODO;
+  Activity.find({ author: req.params.id})
+    .then((createdActivitiesByUserFromDB)=>{
+      
     res.render("created-activities", {data: createdActivitiesByUserFromDB})
   })
-  .catch()
+    .catch(err => {
+      console.log(`An error has occured rendering the activities created by the user: ${err}`)
+    })
 });
 
 router.get("/activities/create", isLoggedIn, (req, res, next)=>{
