@@ -26,6 +26,7 @@ router.get("/activities", isLoggedIn, /*filterActivities*/ (req, res, next)=>{
 
 router.get("/activities/:id/details", isLoggedIn, (req, res, next)=>{
   Activity.findById(req.params.id)
+  .populate('author')
   .then((activityFromDB)=>{
     res.render("details", activityFromDB)
   })
