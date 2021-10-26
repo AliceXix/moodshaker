@@ -3,17 +3,23 @@ const User = require("../models//User.model");
 const Activity = require("../models/Activity.model");
 const isLoggedIn = require("../middleware/isLoggedIn");
 const isLoggedOut = require("../middleware/isLoggedOut");
+const filterActivities = require("../middleware/filterActivities")
  
 
 router.get("/mood-shaker", isLoggedIn, (req, res, next)=>{
   res.render("questions")
 });
 
-router.post("/mood-shaker", isLoggedIn, (req, res, next)=>{
+//req infos from 
+//pass infos in filter
+//render filtered activities
+
+
+router.post("/mood-shaker", isLoggedIn, /*filterActivities,*/ (req, res, next)=>{
   res.send("send answers to DB")//TODO
 });
 
-router.get("/activities", isLoggedIn, /*filterActivities*/ (req, res, next)=>{
+router.get("/activities", isLoggedIn, /*filterActivities,*/ (req, res, next)=>{
   Activity.find()
   .then((activitiesFromDB) => {
     res.render("activities", {data: activitiesFromDB})
@@ -69,11 +75,11 @@ router.get("/user/:id/created-activities", isLoggedIn, (req, res, next)=>{
   .catch()
 });
 
-router.get("/create", isLoggedIn, (req, res, next)=>{
+router.get("/activities/create", isLoggedIn, (req, res, next)=>{
     res.render("create")
   })
 
-router.post("/create", isLoggedIn, (req, res, next)=>{
+router.post("/activities/create", isLoggedIn, (req, res, next)=>{
   const {
     author,
     mood,
