@@ -34,6 +34,16 @@
         <input type="image" name="image"/>
     </label>
 
+    <label>Author
+        <select name="author">
+            <option value="{{data}}">Myself</option>
+        </select>
+    </label>
+    
+    <p>This is the user Id of the current user: {{data}}</p>
+    <p>Name: {{data.username}}</p>
+
+
     <button type="submit">Create new activity!</button>
 
     

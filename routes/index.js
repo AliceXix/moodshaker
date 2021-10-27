@@ -102,7 +102,10 @@ router.get("/user/:id/created-activities", isLoggedIn, (req, res, next)=>{
 
 
 router.get("/activities/create", isLoggedIn, (req, res, next)=>{
-    res.render("create")
+    
+  let user = req.session.user
+
+  res.render("create", {data: user})
   })
 
 
