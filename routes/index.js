@@ -9,20 +9,22 @@ router.get("/mood-shaker", isLoggedIn, (req, res, next)=>{
   res.render("questions")
 });
 
-let moodQuery
-let energyQuery
-
 router.get("/mood-giver", isLoggedIn, (req, res, next) => {
-
-  moodQuery = req.query.mood
-  energyQuery = req.query.energyLvl
-
+  if (typeof req.query.mood === "string") {
+    req.query.mood = [req.query.mood]
+  }
+  console.log(req.query.mood)
   Activity.find()
     .then((allActivitiesFromDB) => {
       newArr = []
+
       allActivitiesFromDB.forEach(elm => {
-        if (elm.mood === moodQuery && elm.energyLvl == energyQuery) {
-          newArr.push(elm)
+        for (let k = 0; k < req.query.mood.length; k++) {
+          if (elm.mood.includes(req.query.mood[k]) && elm.energyLvl == req.query.energyLvl) {
+            if (!newArr.includes(elm)){
+              newArr.push(elm)
+            }
+          }
         }
       })
       return newArr
@@ -51,8 +53,7 @@ router.get("/activities/:id/details", isLoggedIn, (req, res, next)=>{
   Activity.findById(req.params.id)
   .populate('author')
   .then((activityFromDB)=>{
-    console.log({ data: activityFromDB, energyQuery, moodQuery })
-    res.render("details", { data: activityFromDB, energyQuery, moodQuery}, )
+    res.render("details", { data: activityFromDB}, )
   })
   .catch((err)=>{
     console.log("error display details activity from DB", err);
