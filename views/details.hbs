@@ -1,10 +1,10 @@
 <div class="activity-details">
 
-    <h1>{{this.title}}</h1>
+    <h1>{{this.data.title}}</h1>
     <hr>
-    <img src="{{this.image}}" alt="image of an activity"/>
-    <p>{{this.description}}</p>
-    <p>{{this.author.username}}</p>
+    <img src="{{this.data.image}}" alt="image of an activity"/>
+    <p>{{this.data.description}}</p>
+    <p>{{this.data.author.username}}</p>
 
 </div>
 
@@ -15,5 +15,5 @@
 <button type="submit">Delete this activity</button>
 
 <button type="submit">
-    <a href="/activities">Take me back</a>
+    <a href="/mood-giver?mood={{this.moodQuery}}&energyLvl={{this.energyQuery}}">Take me back</a>
 </button>

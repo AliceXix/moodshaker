@@ -9,12 +9,19 @@ router.get("/mood-shaker", isLoggedIn, (req, res, next)=>{
   res.render("questions")
 });
 
-router.get("/mood-giver", (req, res, next) => {
+let moodQuery
+let energyQuery
+
+router.get("/mood-giver", isLoggedIn, (req, res, next) => {
+
+  moodQuery = req.query.mood
+  energyQuery = req.query.energyLvl
+
   Activity.find()
     .then((allActivitiesFromDB) => {
       newArr = []
       allActivitiesFromDB.forEach(elm => {
-        if (elm.mood === req.query.mood && elm.energyLvl == req.query.energyLvl) {
+        if (elm.mood === moodQuery && elm.energyLvl == energyQuery) {
           newArr.push(elm)
         }
       })
@@ -44,7 +51,8 @@ router.get("/activities/:id/details", isLoggedIn, (req, res, next)=>{
   Activity.findById(req.params.id)
   .populate('author')
   .then((activityFromDB)=>{
-    res.render("details", activityFromDB)
+    console.log({ data: activityFromDB, energyQuery, moodQuery })
+    res.render("details", { data: activityFromDB, energyQuery, moodQuery}, )
   })
   .catch((err)=>{
     console.log("error display details activity from DB", err);
