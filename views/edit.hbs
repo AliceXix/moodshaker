@@ -1,22 +1,30 @@
-<form action="/activities/create" method="post">
+<form action="/activity/{{activityDetailsFromDB.id}}/edit" method="post">
     <label>Title
         <input type="text" name="title" value="{{activityDetailsFromDB.title}}" />
     </label>
 
     <label>Mood
-        <select name="mood">
-            {{#each activityDetailsFromDB.mood}}
-            <option value="{{this.name}}"></option>
-            {{/each}}
+        <select name="mood" multiple>
+        
+            <option value="happy">happy</option>
+            <option value="procrastinating">procrastinating</option>
+            <option value="restless">restless</option>
+            <option value="sad">sad</option>
+            <option value="creative">creative</option>
+            <option value="angry">angry</option>
+
         </select>
     </label>
-    //TODO: bug to come
+
 
     <label>Energy Level
         <select name="energyLvl">
-            {{#each activityDetailsFromDB.energyLvl}}
-            <option value="{{this.value}}"></option>
-            {{/each}}
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
         </select>
     </label>
 
@@ -26,11 +34,22 @@
 
     <label>Image
         <input type="image" name="image" value="{{activityDetailsFromDB.image}}"/>
-    </label> //TODO: bug to come
+    </label> 
+   
 
     <button type="submit">Create new activity!</button>
 
-    <button type="submit">
-        <a href="/activities/{{activityDetailsFromDB.id}}/details">Take me back!</a>
-    </button>
+<label>Author
+    <select name="author">
+        <option value="{{user}}">Myself</option>
+    </select>
+</label>
+
+    <p>This is the user Id of the current user: {{user}}</p>
+    <p>Name: {{user.username}}</p>
+
 </form>
+
+    <button type="submit">
+        <a href="javascript:history.back()">Take me back</a>
+    </button>

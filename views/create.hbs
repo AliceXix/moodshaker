@@ -4,19 +4,25 @@
     </label>
 
     <label>Mood
-        <select name="mood">
-            {{#each data}}
-                <option value="{{this.name}}"></option>
-            {{/each}}
+        <select name="mood" multiple>
+            <option value="happy">happy</option>
+            <option value="procrastinating">procrastinating</option>
+            <option value="restless">restless</option>
+            <option value="sad">sad</option>
+            <option value="creative">creative</option>
+            <option value="angry">angry</option>
         </select>
     </label>
-    //TODO: bug to come
+
 
     <label>Energy Level
         <select name="energyLvl">
-            {{#each data2}}
-            <option value="{{this.name}}"></option>
-            {{/each}}
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
         </select>
     </label>
 
@@ -32,3 +38,5 @@
 
     
 </form>
+
+<a href="javascript:history.back()">Take me back</a>

@@ -1,18 +1,22 @@
 <div class="activity-details">
 
-    <h1>{{this.data.title}}</h1>
+    <p>this is a change</p>
+
+    <h1>{{this.title}}</h1>
     <hr>
-    <img src="{{this.data.image}}" alt="image of an activity"/>
-    <p>{{this.data.description}}</p>
-    <p>{{this.data.author.username}}</p>
+    <img src="{{this.image}}" alt="image of an activity"/>
+    <p>{{this.description}}</p>
+    <p>{{this.author.username}}</p>
 
 </div>
 
 <button type="submit">
-    <a href="/activity/{{this.id}}/edit">Edit this activity</a>
+    <a href="/activity/{{this._id}}/edit">Edit this activity</a>
 </button>
 
-<button type="submit">Delete this activity</button>
+<form action="/activities/{{this.id}}/delete" method="POST">
+    <button type="submit">Delete activity</button>
+</form>
 
 <button type="submit">
     <a href="javascript:history.back()">Take me back</a>
