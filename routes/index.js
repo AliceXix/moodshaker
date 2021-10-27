@@ -3,45 +3,33 @@ const User = require("../models//User.model");
 const Activity = require("../models/Activity.model");
 const isLoggedIn = require("../middleware/isLoggedIn");
 const isLoggedOut = require("../middleware/isLoggedOut");
-const filterActivities = require("../middleware/filterActivities")
- 
 
-router.get("/mood-shaker", isLoggedIn, /*filterActivities,*/ (req, res, next)=>{
+
+router.get("/mood-shaker", isLoggedIn, (req, res, next)=>{
   res.render("questions")
 });
 
-//req infos from 
-//pass infos in filter
-//render filtered activities
-
-
-// router.post("/mood-shaker", isLoggedIn, filterActivities,(req, res, next) => {
-//   console.log(`this is the weird post route - hello`)
-//   res.send("send answers to DB")//TODO
-// });
-
 router.get("/mood-giver", (req, res, next) => {
   Activity.find()
-  .then((allActivitiesFromDB) => {
-    newArr = []
-    allActivitiesFromDB.forEach(elm => {
-      if (elm.mood === req.query.mood && elm.energyLvl == req.query.energyLvl) {
-        newArr.push(elm)
-      }
+    .then((allActivitiesFromDB) => {
+      newArr = []
+      allActivitiesFromDB.forEach(elm => {
+        if (elm.mood === req.query.mood && elm.energyLvl == req.query.energyLvl) {
+          newArr.push(elm)
+        }
+      })
+      return newArr
     })
-  return newArr
-  })
-  .then( (activitiesToShow) => {
-    res.render('activities', { data: activitiesToShow})
-  })
-  .catch((err) => {
-    console.log(`Error doing this shit: ${err}`)
-  })
+    .then((activitiesToShow) => {
+      res.render('activities', { data: activitiesToShow })
+    })
+    .catch((err) => {
+      console.log(`Error doing this shit: ${err}`)
+    })
 });
 
 
-
-router.get("/activities", isLoggedIn, filterActivities, (req, res, next)=>{
+router.get("/activities", isLoggedIn, (req, res, next)=>{
   Activity.find()
   .then((activitiesFromDB) => {
     res.render("activities", {data: activitiesFromDB})
