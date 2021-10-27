@@ -66,7 +66,7 @@ router.get("/activities/:id/details", isLoggedIn, (req, res, next)=>{
 //   res.send("save into DB") //TODO
 // });
 
-router.post("/activities/:id/delete", isLoggedIn, /*isAuthor,*/ (req, res, next)=>{
+router.post("/activities/:id/delete", isLoggedIn, isAuthor, (req, res, next)=>{
   Activity.findByIdAndDelete(req.params.id, (err) => {
     if (err) {
       throw console.error(err);
@@ -123,7 +123,7 @@ router.post("/activities/create", isLoggedIn, (req, res, next)=>{
 });
 
 
-router.get("/activity/:id/edit", isLoggedIn, /*isAuthor, */(req, res, next) => {
+router.get("/activity/:id/edit", isLoggedIn, isAuthor, (req, res, next) => {
   Activity.findById(req.params.id)
     .then(((activityDetailsFromDB) => {
       
@@ -138,7 +138,7 @@ router.get("/activity/:id/edit", isLoggedIn, /*isAuthor, */(req, res, next) => {
 })
 
 
-router.post("/activity/:id/edit", isLoggedIn, /*isAuthor,*/ (req, res, next)=>{
+router.post("/activity/:id/edit", isLoggedIn, isAuthor, (req, res, next)=>{
 
   const { author, mood, energyLvl, title, description } = req.body;
   const newDetails = { author, mood, energyLvl, title, description };
