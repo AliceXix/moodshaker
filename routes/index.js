@@ -68,15 +68,10 @@ router.get("/activities/:id/details", isLoggedIn, (req, res, next)=>{
 });
 
 router.post("/activities/:id/details", isLoggedIn, (req, res, next)=>{
-  User.findByIdAndUpdate(req.session.user, { $push: {activities: req.params.id}}, { 'new': true})
-     .then((user) => {
+  User.findByIdAndUpdate(req.session.user._id, { $push: {activities: req.params.id}}, { 'new': true})
+     .then(() => {
 
-    //   let infos = req.params.id
-    //   console.log(infos)
-    //   console.log(user)
-
-    //   user.activities.push(infos)
-
+      res.redirect("/mood-shaker")
 
      })
 });
