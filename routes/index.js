@@ -73,17 +73,10 @@ router.post("/activities/:id/details", isLoggedIn, (req, res, next)=>{
     console.log(loggedActivity.createdAt)
     User.findByIdAndUpdate(req.session.user._id, { $push: { activities: loggedActivity.title } }, { 'new': true })
       .then(() => {
-        console.log("this was a success")
         res.redirect("/mood-shaker")
-
+        //TODO
       })
   })
-  // User.findByIdAndUpdate(req.session.user._id, { $push: {activities: req.params.id}}, { 'new': true})
-  //    .then(() => {
-
-  //     res.redirect("/mood-shaker")
-
-  //    })
 });
 
 router.post("/activities/:id/delete", isLoggedIn, isAuthor, (req, res, next)=>{
@@ -129,7 +122,8 @@ router.get("/activities/create", isLoggedIn, (req, res, next)=>{
 
 
 router.post("/activities/create", isLoggedIn, (req, res, next)=>{
-  
+  //const myObject = req.body.author
+  console.log(req.body.author.toString())
   const { author, mood, energyLvl, title, description } = req.body
 
   Activity.create({author, mood, energyLvl, title,description})
