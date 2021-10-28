@@ -4,7 +4,6 @@
 
     <h1>{{activityFromDB.title}}</h1>
     <hr>
-    <img src="{{activityFromDB.image}}" alt="image of an activity"/>
     <p>{{activityFromDB.description}}</p>
     <p>{{activityFromDB.author.username}}</p>
 
@@ -24,3 +23,7 @@
     <button type="submit">Log activity</button>
 </form>
 
+
+<button type="submit">
+    <a href="javascript:history.back()">Take me back</a>
+</button>

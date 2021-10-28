@@ -31,23 +31,15 @@
     <label>Description
         <input type="text" name="description" value="{{activityDetailsFromDB.description}}"/>
     </label>
-
-    <label>Image
-        <input type="image" name="image" value="{{activityDetailsFromDB.image}}"/>
-    </label> 
    
 
     <button type="submit">Create new activity!</button>
 
-{{!-- <label>Author
-    <select name="author">
-        <option value="{{user}}">Myself</option>
-    </select>
-</label>
-
-    <p>This is the user Id of the current user: {{user}}</p>
-    <p>Name: {{user.username}}</p> --}}
 
 </form>
+
+<button type="submit">
+    <a href="javascript:history.back()">Take me back</a>
+</button>
 
 
