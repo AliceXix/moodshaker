@@ -68,12 +68,22 @@ router.get("/activities/:id/details", isLoggedIn, (req, res, next)=>{
 });
 
 router.post("/activities/:id/details", isLoggedIn, (req, res, next)=>{
-  User.findByIdAndUpdate(req.session.user._id, { $push: {activities: req.params.id}}, { 'new': true})
-     .then(() => {
+  Activity.findById(req.params.id)
+  .then(loggedActivity => {
+    console.log(loggedActivity.createdAt)
+    User.findByIdAndUpdate(req.session.user._id, { $push: { activities: loggedActivity.title } }, { 'new': true })
+      .then(() => {
+        console.log("this was a success")
+        res.redirect("/mood-shaker")
 
-      res.redirect("/mood-shaker")
+      })
+  })
+  // User.findByIdAndUpdate(req.session.user._id, { $push: {activities: req.params.id}}, { 'new': true})
+  //    .then(() => {
 
-     })
+  //     res.redirect("/mood-shaker")
+
+  //    })
 });
 
 router.post("/activities/:id/delete", isLoggedIn, isAuthor, (req, res, next)=>{
@@ -90,10 +100,8 @@ router.post("/activities/:id/delete", isLoggedIn, isAuthor, (req, res, next)=>{
 router.get("/user/:id/dashboard", isLoggedIn, (req, res, next)=>{
   User.findById(req.params.id)
     .then((userInfos)=>{
-    // get user.activities/mood/energyLvl from DB
-    //TODO
-
-    res.render("dashboard", userInfos)
+      console.log(userInfos)
+    res.render("dashboard", {infos: userInfos})
   })
   .catch(err => {
     console.log(`An error has occured rendering the dashboard: ${err}`)

@@ -1,7 +1,21 @@
 <p>This is the dashboard</p>
 
-<p>hello {{this.username}}</p>
+<p>hello {{infos.username}}</p>
+
+<h3>Your passed activities:</h3>
+
+<ul>
+{{#each infos.activities}}
+
+<li>{{this}}</li>
+
+{{/each}}
+</ul>
 
 <button>
-    <a href="/user/{{this._id}}/created-activities">My created activities</a>
+    <a href="/user/{{infos._id}}/created-activities">My created activities</a>
+</button>
+
+<button>
+    <a href="/mood-shaker">Shake it!</a>
 </button>
