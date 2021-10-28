@@ -16,17 +16,19 @@
 {{#if userId}}
       <a href="/user/{{userId._id}}/dashboard">Dashboard</a>
 
-      <p>user id = {{userId}}</p>
-
       <button type="submit">
          <a href="/logout">Log me out!</a>
+      </button>
+
+      <button type="submit">
+         <a href="javascript:history.back()">Take me back</a>
       </button>
 
 {{/if}}
 
 
-
       {{{body}}}
+
 
       <script src="/js/script.js"></script>
    </body>

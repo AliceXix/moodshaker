@@ -24,25 +24,10 @@ const capitalized = (string) => string[0].toUpperCase() + string.slice(1).toLowe
 
 app.locals.title = `${capitalized(projectName)} created with IronLauncher`;
 
-// app.use(express.json());
-
-// app.post('*', (req, res) => {
-//     req.body; // JavaScript object containing the parse JSON
-//     res.json(req.session.user);
-// });
-
 app.use(function(req, res, next) {
-    console.log("Look here -> " , req.session.user, "<- until here")
-        
         app.locals.userId = req.session.user
         next();
-    
-    // app.locals.id = req.session.user;
-    // next();
 });
-
-
-
 
 
 // 👇 Start handling routes here
@@ -51,9 +36,6 @@ app.use("/", index);
 
 const authRoutes = require("./routes/auth");
 app.use("/", authRoutes);
-
-
-
 
 
 

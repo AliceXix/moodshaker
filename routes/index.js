@@ -39,8 +39,10 @@ router.get("/mood-giver", isLoggedIn, (req, res, next) => {
       res.render('activities', { data: activitiesToShow })
     })
     .catch((err) => {
-      console.log(`Error doing this shit: ${err}`)
+      console.log(`An error has occured giving tailored results:`, err)
+      res.render("general-err", err)
     })
+
 });
 
 
@@ -49,9 +51,10 @@ router.get("/activities", isLoggedIn, (req, res, next)=>{
   .then((activitiesFromDB) => {
     res.render("activities", {data: activitiesFromDB})
   })
-  .catch(err => {
-    console.log(`An error has occured getting activities from DB: ${err}`)
-  })
+    .catch((err) => {
+      console.log(`An error has occured getting activities from DB:`, err)
+      res.render("general-err", err)
+    })
 });
 
 
@@ -59,11 +62,14 @@ router.get("/activities/:id/details", isLoggedIn, (req, res, next)=>{
   Activity.findById(req.params.id)
     .populate('author')
     .then((activityFromDB)=>{
+
       const authorIsUser = req.user._id == activityFromDB.author.id
+
       res.render("details", { activityFromDB, authorIsUser} )
     })
-    .catch((err)=>{
-      console.log("error display details activity from DB", err);
+    .catch((err) => {
+      console.log(`error display details activity from DB `, err)
+      res.render("general-err", err)
     })
 });
 
@@ -76,15 +82,21 @@ router.post("/activities/:id/details", isLoggedIn, (req, res, next)=>{
         res.redirect("/mood-shaker")
         //TODO
       })
+      .catch((err) => {
+        console.log(`An error has occured logging activity to user in DB:`, err)
+        res.render("general-err", err)
+      })
   })
 });
 
 router.post("/activities/:id/delete", isLoggedIn, isAuthor, (req, res, next)=>{
   Activity.findByIdAndDelete(req.params.id, (err) => {
     if (err) {
-      throw console.error(err);
+      console.log(`An error has occured deleting activity:`, err)
+      res.render("general-err", err)
     } else {
       res.redirect("/activities");
+      //TODO
     }
   });
 });
@@ -93,12 +105,12 @@ router.post("/activities/:id/delete", isLoggedIn, isAuthor, (req, res, next)=>{
 router.get("/user/:id/dashboard", isLoggedIn, (req, res, next)=>{
   User.findById(req.params.id)
     .then((userInfos)=>{
-      console.log(userInfos)
     res.render("dashboard", {infos: userInfos})
   })
-  .catch(err => {
-    console.log(`An error has occured rendering the dashboard: ${err}`)
-  })
+    .catch((err) => {
+      console.log(`An error has occured rendering the dashboard:`, err)
+      res.render("general-err", err)
+    })
 });
 
 
@@ -107,23 +119,21 @@ router.get("/user/:id/created-activities", isLoggedIn, (req, res, next)=>{
     .then((createdActivitiesByUserFromDB)=>{
     res.render("created-activities", {data: createdActivitiesByUserFromDB})
   })
-    .catch(err => {
-      console.log(`An error has occured rendering the activities created by the user: ${err}`)
+    .catch((err) => {
+      console.log(`An error has occured rendering the activities created by the user:`, err)
+      res.render("general-err", err)
     })
 });
 
 
 router.get("/activities/create", isLoggedIn, (req, res, next)=>{
-    
   let user = req.session.user
-
   res.render("create", {data: user})
   })
 
 
 router.post("/activities/create", isLoggedIn, (req, res, next)=>{
-  //const myObject = req.body.author
-  console.log(req.body.author.toString())
+  
   const { author, mood, energyLvl, title, description } = req.body
 
   Activity.create({author, mood, energyLvl, title,description})
@@ -131,7 +141,8 @@ router.post("/activities/create", isLoggedIn, (req, res, next)=>{
     res.redirect("/mood-shaker")
   })
     .catch((err) => {
-      console.log(`an error occured sending the data from form to db: ${err}`)
+      console.log(`An error occured sending the data from form to DB:`, err)
+      res.render("general-err", err)
     })
 });
 
@@ -139,16 +150,15 @@ router.post("/activities/create", isLoggedIn, (req, res, next)=>{
 router.get("/activity/:id/edit", isLoggedIn, isAuthor, (req, res, next) => {
   Activity.findById(req.params.id)
     .then(((activityDetailsFromDB) => {
-      
       let user = req.session.user
-
-      res.render("edit", { activityDetailsFromDB, /*user*/ })
+      res.render("edit", { activityDetailsFromDB })
     }))
-    .catch(err => {
-      console.log(`An error has occured: ${err}`)
-      next(err);
+    .catch((err) => {
+      console.log(`An error has occured getting the information about the activity to edit:`, err)
+      res.render("general-err", err)
     })
 })
+
 
 
 router.post("/activity/:id/edit", isLoggedIn, isAuthor, (req, res, next)=>{
@@ -160,8 +170,9 @@ router.post("/activity/:id/edit", isLoggedIn, isAuthor, (req, res, next)=>{
   .then(()=> {
     res.redirect("/mood-shaker")
   })
-  .catch((err)=>{
-    console.log("error getting activity details from DB");
+  .catch((err) => {
+    console.log(`An error has occured getting activity details from DB:`, err)
+    res.render("general-err", err)
   })
 });
 
