@@ -1,34 +1,47 @@
-<!DOCTYPE html>
 <html lang="en">
 
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <title>{{title}}</title>
-      <link rel="stylesheet" href="/stylesheets/style.css" />
-   </head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Fredoka+One&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-   <body>
+  <body>
 
-      <h1>Mood-shaker! Shake it, make it!!!!!!!!!</h1>
+    <section class="layout">
 
+      <div class="logo">
+         
+         <a href="/" ><img src="/images/logo-blcv2.png" alt="logo mood shaker"></a>
+      </div>
 
-      <a href="/user/{{userId._id}}/dashboard">Dashboard</a>
+      <div class="buttons-panel">
+         <a class="link" id="dash"  href="/user/{{userId._id}}/dashboard">Dashboard</a>
 
-      <p>user id = {{userId._id}}</p>
-
-      <button type="submit">
-         <a href="/logout">Log me out!</a>
+      <button class="logout" type="submit">
+        <a class="link" href="/logout">Log out</a>
       </button>
+      </div>
 
-      {{!-- <button type="submit">
+      
+
+      </section>
+
+      {{! <button type="submit">
          <a href="/user/6179a49ff34bc5b97209ad2d/dashboard">My dashboard</a>
-      </button> --}}
+      </button> }}
 
       {{{body}}}
 
-      <script src="/js/script.js"></script>
-   </body>
+    
+
+    <script src="/js/script.js"></script>
+  </body>
 
 </html>
