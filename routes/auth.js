@@ -15,7 +15,7 @@ const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
 router.get("/", isLoggedOut, (req, res) => {
-  res.render("auth/register");
+    res.render("auth/register");
 });
 
 router.post("/", isLoggedOut, (req, res) => {

@@ -7,6 +7,7 @@ const isAuthor = require("../middleware/isAuthor");
 
 
 router.get("/mood-shaker", isLoggedIn, (req, res, next)=>{
+  console.log(req.session.user)
   res.render("questions")
 });
 
@@ -82,6 +83,7 @@ router.get("/user/:id/dashboard", isLoggedIn, (req, res, next)=>{
     .then((userInfos)=>{
     // get user.activities/mood/energyLvl from DB
     //TODO
+
     res.render("dashboard", userInfos)
   })
   .catch(err => {

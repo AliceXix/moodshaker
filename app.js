@@ -24,6 +24,12 @@ const capitalized = (string) => string[0].toUpperCase() + string.slice(1).toLowe
 
 app.locals.title = `${capitalized(projectName)} created with IronLauncher`;
 
+app.use(function(req, res, next) {
+    app.locals.id = req.session.user;
+    next();
+});
+
+
 
 
 
