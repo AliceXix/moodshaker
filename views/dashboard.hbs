@@ -2,6 +2,8 @@
 
 <p>hello {{infos.username}}</p>
 
+
+{{#if infos.activities}}
 <h3>Your passed activities:</h3>
 
 <ul>
@@ -11,6 +13,12 @@
 
 {{/each}}
 </ul>
+
+{{else}}
+
+<p>You don't have any activities logged yet...</p>
+
+{{/if}}
 
 <button>
     <a href="/user/{{infos._id}}/created-activities">My created activities</a>

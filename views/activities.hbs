@@ -1,4 +1,6 @@
 <h1>Results tailored to your mood...</h1>
+
+{{#if data}}
 {{#each data}}
     <div>
         <img src="{{this.image}}" alt="image of activity"/>
@@ -6,6 +8,11 @@
         <a href="/activities/{{this.id}}/details">take me to more details</a>
     </div>
 {{/each}}
+
+{{else}}
+<p>we do not have a result for you mood and level of energy.. yet!</p>
+
+{{/if}}
 
 <button>
     <a href="activities/create">create activity</a>
