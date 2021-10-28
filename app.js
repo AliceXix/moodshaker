@@ -32,7 +32,8 @@ app.locals.title = `${capitalized(projectName)} created with IronLauncher`;
 // });
 
 app.use(function(req, res, next) {
-   
+    console.log("Look here -> " , req.session.user, "<- until here")
+        
         app.locals.userId = req.session.user
         next();
     

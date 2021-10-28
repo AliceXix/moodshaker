@@ -13,18 +13,18 @@
 
       <h1>Mood-shaker! Shake it, make it!!!!!!!!!</h1>
 
-
+{{#if userId}}
       <a href="/user/{{userId._id}}/dashboard">Dashboard</a>
 
-      <p>user id = {{userId._id}}</p>
+      <p>user id = {{userId}}</p>
 
       <button type="submit">
          <a href="/logout">Log me out!</a>
       </button>
 
-      {{!-- <button type="submit">
-         <a href="/user/6179a49ff34bc5b97209ad2d/dashboard">My dashboard</a>
-      </button> --}}
+{{/if}}
+
+
 
       {{{body}}}
 
