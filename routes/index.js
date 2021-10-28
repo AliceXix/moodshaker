@@ -55,7 +55,7 @@ router.get("/activities", isLoggedIn, (req, res, next)=>{
 });
 
 
-router.get("/activities/:id/details", isLoggedIn, pushActivity, (req, res, next)=>{
+router.get("/activities/:id/details", isLoggedIn, (req, res, next)=>{
   Activity.findById(req.params.id)
   .populate('author')
   .then((activityFromDB)=>{
@@ -66,21 +66,19 @@ router.get("/activities/:id/details", isLoggedIn, pushActivity, (req, res, next)
   })
 });
 
-// router.post("/activities/:id/details", isLoggedIn, (req, res, next)=>{
-//   User.findById(req.session.user)
-//     .then((user) => {
+router.post("/activities/:id/details", isLoggedIn, (req, res, next)=>{
+  User.findByIdAndUpdate(req.session.user, { $push: {activities: req.params.id}}, { 'new': true})
+     .then((user) => {
 
-//       let infos = req.params.id
-//       console.log(infos)
-//       console.log(user)
+    //   let infos = req.params.id
+    //   console.log(infos)
+    //   console.log(user)
 
-//       user.activities.push(infos)
-
-//       console.log(user)
+    //   user.activities.push(infos)
 
 
-//     })
-// });
+     })
+});
 
 router.post("/activities/:id/delete", isLoggedIn, isAuthor, (req, res, next)=>{
   Activity.findByIdAndDelete(req.params.id, (err) => {
@@ -146,7 +144,7 @@ router.get("/activity/:id/edit", isLoggedIn, isAuthor, (req, res, next) => {
       
       let user = req.session.user
 
-      res.render("edit", { activityDetailsFromDB, user })
+      res.render("edit", { activityDetailsFromDB, /*user*/ })
     }))
     .catch(err => {
       console.log(`An error has occured: ${err}`)
