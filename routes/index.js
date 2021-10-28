@@ -4,8 +4,7 @@ const Activity = require("../models/Activity.model");
 const isLoggedIn = require("../middleware/isLoggedIn");
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isAuthor = require("../middleware/isAuthor");
-const pushFeeling = require("../middleware/pushFeeling");
-const pushActivity = require("../middleware/pushActivity");
+//const pushFeeling = require("../middleware/pushFeeling");
 
 
 router.get("/mood-shaker", isLoggedIn, (req, res, next)=>{
@@ -15,7 +14,6 @@ router.get("/mood-shaker", isLoggedIn, (req, res, next)=>{
 
 
 router.get("/mood-giver", isLoggedIn, (req, res, next) => {
-  
   if (typeof req.query.mood === "string") {
     req.query.mood = [req.query.mood]
   }
@@ -127,7 +125,9 @@ router.get("/user/:id/created-activities", isLoggedIn, (req, res, next)=>{
 
 
 router.get("/activities/create", isLoggedIn, (req, res, next)=>{
+
   let user = req.session.user
+
   res.render("create", {data: user})
   })
 
@@ -150,7 +150,6 @@ router.post("/activities/create", isLoggedIn, (req, res, next)=>{
 router.get("/activity/:id/edit", isLoggedIn, isAuthor, (req, res, next) => {
   Activity.findById(req.params.id)
     .then(((activityDetailsFromDB) => {
-      let user = req.session.user
       res.render("edit", { activityDetailsFromDB })
     }))
     .catch((err) => {
