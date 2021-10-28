@@ -2,23 +2,25 @@
 
     <p>this is a change</p>
 
-    <h1>{{this.title}}</h1>
+    <h1>{{activityFromDB.title}}</h1>
     <hr>
-    <img src="{{this.image}}" alt="image of an activity"/>
-    <p>{{this.description}}</p>
-    <p>{{this.author.username}}</p>
+    <img src="{{activityFromDB.image}}" alt="image of an activity"/>
+    <p>{{activityFromDB.description}}</p>
+    <p>{{activityFromDB.author.username}}</p>
 
 </div>
 
-<button type="submit">
-    <a href="/activity/{{this._id}}/edit">Edit this activity</a>
-</button>
+{{#if authorIsUser}}
+    <button type="submit">
+        <a href="/activity/{{activityFromDB._id}}/edit">Edit this activity</a>
+    </button>
 
-<form action="/activities/{{this.id}}/delete" method="POST">
-    <button type="submit">Delete activity</button>
-</form>
+    <form action="/activities/{{activityFromDB.id}}/delete" method="POST">
+        <button type="submit">Delete activity</button>
+    </form>
+{{/if}}
 
-<form action="/activities/{{this.id}}/details" method="get">
+<form action="/activities/{{activityFromDB.id}}/details" method="get">
     <button type="submit">Log activity</button>
 </form>
 

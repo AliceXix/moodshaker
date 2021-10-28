@@ -57,13 +57,14 @@ router.get("/activities", isLoggedIn, (req, res, next)=>{
 
 router.get("/activities/:id/details", isLoggedIn, (req, res, next)=>{
   Activity.findById(req.params.id)
-  .populate('author')
-  .then((activityFromDB)=>{
-    res.render("details", activityFromDB )
-  })
-  .catch((err)=>{
-    console.log("error display details activity from DB", err);
-  })
+    .populate('author')
+    .then((activityFromDB)=>{
+      const authorIsUser = req.user.id == activityFromDB.author
+      res.render("details", { activityFromDB, authorIsUser} )
+    })
+    .catch((err)=>{
+      console.log("error display details activity from DB", err);
+    })
 });
 
 router.post("/activities/:id/details", isLoggedIn, (req, res, next)=>{
