@@ -22,7 +22,8 @@ require("./config")(app);
 const projectName = "moodshaker";
 const capitalized = (string) => string[0].toUpperCase() + string.slice(1).toLowerCase();
 
-app.locals.title = `${capitalized(projectName)} created with IronLauncher`;
+app.locals.title = `Shake your mood 
+with ${capitalized(projectName)} !`;
 
 app.use(function(req, res, next) {
         app.locals.userId = req.session.user
