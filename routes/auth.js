@@ -19,12 +19,15 @@ router.get("/", isLoggedOut, (req, res) => {
 });
 
 router.post("/", isLoggedOut, (req, res) => {
+
   const { username, mail, password } = req.body;
 
   if (!username) {
     return res
       .status(400)
-      .render("auth/register", { errorMessage: "Please provide your username." });
+      .render("auth/register", {
+        errorMessage: "Please provide your username.",
+      });
   }
 
   if (password.length < 8) {
@@ -32,7 +35,7 @@ router.post("/", isLoggedOut, (req, res) => {
       errorMessage: "Your password needs to be at least 8 characters long.",
     });
   }
-//-------------CODE BELLOW IS TO KEEP COMMENTED-----------//
+  //-------------CODE BELLOW IS TO KEEP COMMENTED-----------//
   //   ! This use case is using a regular expression to control for special characters and min length
   /*
   const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
@@ -44,7 +47,7 @@ router.post("/", isLoggedOut, (req, res) => {
     });
   }
   */
-//---------CODE ABOVE IS TO KEEP COMMENTED--------//
+  //---------CODE ABOVE IS TO KEEP COMMENTED--------//
 
   //Search the database for a user with the username submitted in the form
   User.findOne({ username }).then((found) => {
@@ -65,8 +68,7 @@ router.post("/", isLoggedOut, (req, res) => {
           username,
           mail,
           password: hashedPassword,
-        })
-
+        });
       })
       .then((user) => {
         // Bind the user to the session object
@@ -89,7 +91,7 @@ router.post("/", isLoggedOut, (req, res) => {
           .status(500)
           .render("auth/register", { errorMessage: error.message });
       });
- });
+  });
 });
 
 router.get("/login", isLoggedOut, (req, res) => {
@@ -102,7 +104,9 @@ router.post("/login", isLoggedOut, (req, res, next) => {
   if (!username) {
     return res
       .status(400)
-      .render("auth/register", { errorMessage: "Please provide your username." });
+      .render("auth/register", {
+        errorMessage: "Please provide your username.",
+      });
   }
 
   // Here we use the same logic as above
@@ -124,27 +128,25 @@ router.post("/login", isLoggedOut, (req, res, next) => {
       }
 
       //If user is found based on the username, check if the in putted password matches the one saved in the database
-      bcrypt
-        .compare(password, user.password)
-        .then((isSamePassword) => {
-        console.log(`>>>>>>>>>>>>>>> ${password}`)
-        console.log(`>>>>>>>>>> ${user.password}`)
-          console.log(`>>>>>>>>>> ${isSamePassword}`)
+      bcrypt.compare(password, user.password).then((isSamePassword) => {
+        console.log(`>>>>>>>>>>>>>>> ${password}`);
+        console.log(`>>>>>>>>>> ${user.password}`);
+        console.log(`>>>>>>>>>> ${isSamePassword}`);
         if (!isSamePassword) {
           return res
             .status(400)
             .render("auth/login", { errorMessage: "Wrong credentials." });
         }
-         req.session.user = user;
-         req.session.user = user._id; // ! better and safer but in this case we saving the entire user object
+        req.session.user = user;
+        req.session.user = user._id; // ! better and safer but in this case we saving the entire user object
         return res.redirect("/mood-shaker");
       });
-   })
+    })
     .catch((err) => {
       // in this case we are sending the error handling to the error handling middleware that is defined in the error handling file
       // you can just as easily run the res.status that is commented out below
       next(err);
-       return res.status(500).render("login", { errorMessage: err.message });
+      return res.status(500).render("login", { errorMessage: err.message });
     });
 });
 
