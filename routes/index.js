@@ -59,7 +59,7 @@ router.get("/activities/:id/details", isLoggedIn, (req, res, next)=>{
   Activity.findById(req.params.id)
     .populate('author')
     .then((activityFromDB)=>{
-      const authorIsUser = req.user.id == activityFromDB.author
+      const authorIsUser = req.user._id == activityFromDB.author.id
       res.render("details", { activityFromDB, authorIsUser} )
     })
     .catch((err)=>{
