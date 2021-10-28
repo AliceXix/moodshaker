@@ -4,6 +4,8 @@ const Activity = require("../models/Activity.model");
 const isLoggedIn = require("../middleware/isLoggedIn");
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isAuthor = require("../middleware/isAuthor");
+const pushFeeling = require("../middleware/pushFeeling");
+const pushActivity = require("../middleware/pushActivity");
 
 
 router.get("/mood-shaker", isLoggedIn, (req, res, next)=>{
@@ -12,6 +14,7 @@ router.get("/mood-shaker", isLoggedIn, (req, res, next)=>{
 
 
 router.get("/mood-giver", isLoggedIn, (req, res, next) => {
+  
   if (typeof req.query.mood === "string") {
     req.query.mood = [req.query.mood]
   }
@@ -51,7 +54,7 @@ router.get("/activities", isLoggedIn, (req, res, next)=>{
 });
 
 
-router.get("/activities/:id/details", isLoggedIn, (req, res, next)=>{
+router.get("/activities/:id/details", isLoggedIn, pushActivity, (req, res, next)=>{
   Activity.findById(req.params.id)
   .populate('author')
   .then((activityFromDB)=>{
@@ -62,8 +65,20 @@ router.get("/activities/:id/details", isLoggedIn, (req, res, next)=>{
   })
 });
 
-// router.post("/activities/:id/details", isLoggedIn, /*pushActivity*/ (req, res, next)=>{
-//   res.send("save into DB") //TODO
+// router.post("/activities/:id/details", isLoggedIn, (req, res, next)=>{
+//   User.findById(req.session.user)
+//     .then((user) => {
+
+//       let infos = req.params.id
+//       console.log(infos)
+//       console.log(user)
+
+//       user.activities.push(infos)
+
+//       console.log(user)
+
+
+//     })
 // });
 
 router.post("/activities/:id/delete", isLoggedIn, isAuthor, (req, res, next)=>{
