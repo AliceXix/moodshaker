@@ -4,14 +4,14 @@
     <h2>Personalize your MoodShaker</h2>
   </div>
 
-    <div class="form-register">
+    <div class="create-register">
         <form class="form-create" action="/activities/create" method="post">
 
         <label>
         <input  class="title-select" type="text" name="title" placeholder="Title"/>
         </label>
 
-        <label>Mood <br>
+        <label class="labels">Mood <br>
         <select class="mood-select" name="mood" multiple>
             <option value="happy">happy</option>
             <option value="procrastinating">procrastinating</option>
@@ -22,7 +22,7 @@
         </select>
         </label>
 
-        <label>Energy Level <br>
+        <label class="labels">Energy Level <br>
         <select class="energy-select" name="energyLvl">
             <option value="0">0</option>
             <option value="1">1</option>
@@ -37,15 +37,15 @@
         <input class="description-select"type="text" name="description" placeholder="Description" />
         </label>
 
-        <label>Author <br>
+        <label id="hide">Author <br>
     
-        <select name="author">
+        <select  class="energy-select" name="author">
             <option value="{{data._id}}">Myself</option>
         </select>
         </label>
 
 
-        <button  type="submit">Create new activity!</button>
+        <button class="create-edit" type="submit">Create</button>
 
     </form>
   </div>

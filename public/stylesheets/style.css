@@ -22,6 +22,15 @@ h2 {
   font-family: "Architects Daughter", cursive;
 }
 
+/* REUSABLE CLASSES */
+.box {
+  background-color: rgb(255, 211, 0);
+  border-radius: 20px;
+  margin: auto;
+}
+
+
+
 /* LAYOUT */
 
 .layout {
@@ -379,6 +388,19 @@ h4 {
 
 /* CREATE */
 
+.create-register {
+  background-color: rgb(255, 211, 0);
+  border-radius: 20px;
+  margin: auto;
+  /* padding: 30px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  /* align-items: center; */
+  width: 25vw;
+  height: 50vh;
+}
+
 .form-create {
   display: flex;
   flex-direction: column;
@@ -386,14 +408,14 @@ h4 {
   text-align: center;
 }
 .form-create label {
-  margin: 1.5%;
+  margin: 2%;
 }
 
-.form-create input  {
+.form-create input {
   /* height: 40px; */
   /* width: 100%; */
   /* margin-left: 10%; */
-  margin-top: ;
+  margin-top: 10px;
   border-radius: 10px;
   border: none;
 }
@@ -425,11 +447,46 @@ h4 {
 }
 
 .description-select {
-  height: 80px;
+  height: 90px;
   width: 20vw;
   border-radius: 10px;
   border: none;
   margin: auto;
 }
 
+#hide {
+  visibility: hidden;
+}
 
+.create-edit {
+  background-color: #65dc9a;
+  color: white;
+  font-size: 1.5rem;
+  width: 20%;
+  height: 60px;
+  border-radius: 10px;
+  border: none;
+  text-align: center;
+}
+
+.create-edit:hover {
+  background-color: #ffa7c0;
+  width: 20%;
+  height: 60px;
+  border-radius: 10px;
+  border: none;
+}
+
+.labels {
+  color: white;
+  font-family: "Architects Daughter", cursive;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* DETAILS */
+
+#box-details {
+  width: 30vw;
+  padding: 2rem;
+}

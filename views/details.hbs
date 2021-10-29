@@ -1,31 +1,34 @@
-<div class="activity-details">
+<section class="display">
+  <div class="activity-details">
 
-  <p>this is a change</p>
+    <h1>{{activityFromDB.title}}</h1>
 
-  <h1>{{activityFromDB.title}}</h1>
-  <hr />
-  <p>{{activityFromDB.description}}</p>
-  <p>{{activityFromDB.author.username}}</p>
+    <div id="box-details" class="box">
+      <p>{{activityFromDB.description}}</p>
+      <p>{{activityFromDB.author.username}}</p>
+    </div>
 
-</div>
+  </div>
 
-{{#if authorIsUser}}
-  <button type="submit">
-    <a href="/activity/{{activityFromDB._id}}/edit">Edit this activity</a>
-  </button>
+  {{#if authorIsUser}}
+    {{#if currentUrl}}
+      <button type="submit">
+        <a href="/activity/{{activityFromDB._id}}/edit">Edit this activity</a>
+      </button>
 
-  {{#if currentUrl}}
-    <form action="/activities/{{activityFromDB.id}}/delete" method="POST">
-      <button type="submit">Delete activity</button>
-    </form>
+      <form action="/activities/{{activityFromDB.id}}/delete" method="POST">
+        <button type="submit">Delete activity</button>
+      </form>
+    {{/if}}
+
   {{/if}}
 
-{{/if}}
+  <form action="/activities/{{activityFromDB.id}}/details" method="post">
+    <button type="submit">Log activity</button>
+  </form>
 
-<form action="/activities/{{activityFromDB.id}}/details" method="post">
-  <button type="submit">Log activity</button>
-</form>
+  <button type="submit">
+    <a href="javascript:history.back()">Take me back</a>
+  </button>
 
-<button type="submit">
-  <a href="javascript:history.back()">Take me back</a>
-</button>
+</section>
