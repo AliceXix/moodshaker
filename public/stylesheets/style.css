@@ -172,8 +172,8 @@ h2 {
 
 .questions {
   background-color: rgb(255, 211, 0);
-  width: 80%;
-  height: 70%;
+  width: 70vw;
+  height: 60%;
   padding-top: 40px;
   padding-bottom: 40px;
   border-radius: 30px;
@@ -182,8 +182,14 @@ h2 {
   align-items: center;
   margin-bottom: 5%;
 }
+/* .container {
+  position: static;
+} */
 
 .moods {
+  width: 70%;
+  max-height: 100%;
+  margin: auto;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -191,10 +197,11 @@ h2 {
   flex-wrap: wrap;
 }
 
-h3 {
+h3,
+h4 {
   margin: 0;
   color: #65dc9a;
-  margin-top: 5%;
+  margin-top: 1%;
 }
 
 .main-form {
@@ -209,106 +216,11 @@ h3 {
   color: white;
 }
 
-.happy {
-  height: 150px;
-  width: 310px;
-  background-color: white;
-  font-size: 2.5rem;
-  border-radius: 20px;
-  text-align: center;
-  margin: 15px;
-}
-
-.happy:hover {
-  height: 150px;
-  width: 310px;
-  background-color: #ffeff4;
-  font-size: 2.5rem;
-  border-radius: 20px;
-  text-align: center;
-  margin: 15px;
-}
-
-.sad {
-  height: 150px;
-  width: 310px;
-  background-color: white;
-  font-size: 2.5rem;
-  border-radius: 20px;
-  text-align: center;
-  margin: 15px;
-}
-
-.sad:hover {
-  height: 150px;
-  width: 310px;
-  background-color: #ffeff4;
-  font-size: 2.5rem;
-  border-radius: 20px;
-  text-align: center;
-  margin: 15px;
-}
-
-.creative {
-  height: 150px;
-  width: 310px;
-  background-color: white;
-  font-size: 2.5rem;
-  border-radius: 20px;
-  text-align: center;
-  margin: 15px;
-}
-
-.creative:hover {
-  height: 150px;
-  width: 310px;
-  background-color: #ffeff4;
-  font-size: 2.5rem;
-  border-radius: 20px;
-  text-align: center;
-  margin: 15px;
-}
-
-.procrastinating {
-  height: 150px;
-  width: 310px;
-  background-color: white;
-  font-size: 2.5rem;
-  border-radius: 20px;
-  text-align: center;
-  margin: 15px;
-}
-
-.procrastinating:hover {
-  height: 150px;
-  width: 310px;
-  background-color: #ffeff4;
-  font-size: 2.5rem;
-  border-radius: 20px;
-  text-align: center;
-  margin: 15px;
-}
-
-.angry {
-  height: 150px;
-  width: 310px;
-  background-color: white;
-  font-size: 2.5rem;
-  border-radius: 20px;
-  text-align: center;
-  margin: 15px;
-}
-
-.angry:hover {
-  height: 150px;
-  width: 310px;
-  background-color: #ffeff4;
-  font-size: 2.5rem;
-  border-radius: 20px;
-  text-align: center;
-  margin: 15px;
-}
-
+.happy,
+.sad,
+.creative,
+.procrastinating,
+.angry,
 .restless {
   height: 150px;
   width: 310px;
@@ -319,16 +231,12 @@ h3 {
   margin: 15px;
 }
 
+.happy:hover,
+.sad:hover,
+.creative:hover,
+.procrastinating:hover,
+.angry:hover,
 .restless:hover {
-  height: 150px;
-  width: 310px;
-  background-color: #ffeff4;
-  font-size: 2.5rem;
-  border-radius: 20px;
-  text-align: center;
-  margin: 15px;
-}
-.restless:active {
   height: 150px;
   width: 310px;
   background-color: #ffeff4;
@@ -350,9 +258,9 @@ h3 {
   justify-content: space-evenly;
 }
 
-.energy0 input {
+/* .energy0 input {
   width: 50px;
-}
+} */
 
 .submit-button {
   background-color: #65dc9a;
@@ -369,6 +277,96 @@ h3 {
   background-color: #ffa7c0;
   width: 20%;
   height: 60px;
+  border-radius: 10px;
+  border: none;
+}
+
+/* RESULTS */
+
+.display2 {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  /* margin-top: 20vh; */
+}
+
+.result-content {
+  background-color: rgb(255, 211, 0);
+  max-width: 70vh;
+  /* height: 10%; */
+  border-radius: 20px;
+  padding: 3%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.cards {
+  background-color: white;
+  border-radius: 10px;
+  /* height: 150px; */
+  width: 310px;
+  margin: 15;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 15px;
+}
+
+.details-title {
+  color: #65dc9a;
+  font-size: 3rem;
+  text-align: center;
+  font-family: "Architects Daughter", cursive;
+}
+
+.details-link {
+  text-decoration: none;
+  text-align: center;
+  color: white;
+  background-color: #ffa7c0;
+  width: 120px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5%;
+  border-radius: 10px;
+}
+
+.try-again {
+  display: flex;
+  justify-content: center;
+}
+
+.try-again button {
+  margin: 10px;
+  background-color: #65dc9a;
+  color: white;
+  font-size: 1.5rem;
+  width: 150px;
+  height: 70%;
+  border-radius: 10px;
+  border: none;
+  text-align: center;
+  padding: 20px;
+}
+
+.try-again button a {
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+.try-again button:hover {
+  margin: 10px;
+  background-color: #ffa7c0;
+  width: 150px;
+  height: 70%;
   border-radius: 10px;
   border: none;
 }

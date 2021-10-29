@@ -1,29 +1,31 @@
 <div class="activity-details">
 
-    <p>this is a change</p>
+  <p>this is a change</p>
 
-    <h1>{{activityFromDB.title}}</h1>
-    <hr>
-    <p>{{activityFromDB.description}}</p>
-    <p>{{activityFromDB.author.username}}</p>
+  <h1>{{activityFromDB.title}}</h1>
+  <hr />
+  <p>{{activityFromDB.description}}</p>
+  <p>{{activityFromDB.author.username}}</p>
 
 </div>
 
 {{#if authorIsUser}}
-    <button type="submit">
-        <a href="/activity/{{activityFromDB._id}}/edit">Edit this activity</a>
-    </button>
+  <button type="submit">
+    <a href="/activity/{{activityFromDB._id}}/edit">Edit this activity</a>
+  </button>
 
+  {{#if currentUrl}}
     <form action="/activities/{{activityFromDB.id}}/delete" method="POST">
-        <button type="submit">Delete activity</button>
+      <button type="submit">Delete activity</button>
     </form>
+  {{/if}}
+
 {{/if}}
 
 <form action="/activities/{{activityFromDB.id}}/details" method="post">
-    <button type="submit">Log activity</button>
+  <button type="submit">Log activity</button>
 </form>
 
-
 <button type="submit">
-    <a href="javascript:history.back()">Take me back</a>
+  <a href="javascript:history.back()">Take me back</a>
 </button>

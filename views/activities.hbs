@@ -1,22 +1,35 @@
-<h1>Results tailored to your mood...</h1>
+<section class="display2">
+  <h1 class="titre-question">Results tailored to your mood...</h1>
 
-{{#if data}}
-{{#each data}}
-    <div>
-        <p>{{this.title}}</p>
-        <a href="/activities/{{this.id}}/details">take me to more details</a>
-    </div>
-{{/each}}
+  <div class="result-content">
 
-{{else}}
-<p>we do not have a result for you mood and level of energy.. yet!</p>
+    {{#if data}}
+      {{#each data}}
+        <div class="cards">
+          <h3 class="details-title">{{this.title}}</h3>
+          <a class="details-link" href="/activities/{{this.id}}/details">More details</a>
+            {{!-- {{#each this.mood}}
+            <p class="results">{{this}}</p> 
+            {{/each}}        --}}
+        </div>
+      {{/each}}
 
-{{/if}}
+    {{else}}
+      <p>we do not have a result for you mood and level of energy.. yet!</p>
 
-<button>
-    <a href="activities/create">create activity</a>
-</button>
+    {{/if}}
 
-<button>
-    <a href="/mood-shaker">Shake again!</a>
-</button>
+  </div>
+
+  <div class="try-again">
+    <button>
+      <a class="" href="activities/create">Create</a>
+    </button>
+
+    <button>
+      <a href="/mood-shaker">Shake again !</a>
+    </button>
+
+  </div>
+
+</section>
