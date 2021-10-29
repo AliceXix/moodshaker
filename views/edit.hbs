@@ -5,15 +5,15 @@
         <h2>Better day by day</h2>
     </div>
 
-<div class="form-register">
+<div class="create-register">
 <form class="form-create" action="/activity/{{activityDetailsFromDB.id}}/edit" method="post">
     <div >
-        <label>Title
+        <label class="labels">Title <br>
             <input class="title-select" type="text" name="title" value="{{activityDetailsFromDB.title}}" />
         </label>
     </div>
 
-    <label>Mood <br>
+    <label class="labels">Mood <br>
         <select class="mood-select" name="mood" multiple>
         
             <option value="happy">happy</option>
@@ -27,7 +27,7 @@
     </label>
 
 
-    <label>Energy Level <br>
+    <label class="labels">Energy Level <br>
         <select class="energy-select" name="energyLvl">
             <option value="0">0</option>
             <option value="1">1</option>
@@ -38,12 +38,12 @@
         </select>
     </label>
 
-    <label>Description <br>
+    <label class="labels">Description <br>
         <input class="description-select" type="text" name="description" value="{{activityDetailsFromDB.description}}"/>
     </label>
    
 
-    <button type="submit">Create new activity!</button>
+    <button class="create-edit" type="submit">Edit</button>
 
 
 </form>
