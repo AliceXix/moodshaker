@@ -27,6 +27,16 @@ h2 {
   background-color: rgb(255, 211, 0);
   border-radius: 20px;
   margin: auto;
+  text-align: center;
+}
+
+.card {
+  background-color: white;
+  border-radius: 10px;
+  margin: auto;
+  height: 100px;
+  padding: 20px; 
+  text-align: left;
 }
 
 
@@ -487,6 +497,47 @@ h4 {
 /* DETAILS */
 
 #box-details {
+  margin-top: 10vh;
   width: 30vw;
   padding: 2rem;
+}
+
+.card-author {
+  background-color: white;
+  border-radius: 10px;
+  margin: auto;
+  height: 30px;
+  padding: 20px; 
+}
+
+.buttons-bottom {
+  display: flex;
+  
+}
+
+.buttons-bottom button, .buttons-bottom button a {
+  background-color: #65dc9a;
+  color: white;
+  width: 200px;
+  height: 80px;
+  margin: 20px;
+  border-radius: 10px;
+  border: none;  
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
+.buttons-bottom button:hover, .buttons-bottom button a:hover {
+  background-color: #ffa7c0;
+  color: white;
+  width: 200px;
+  height: 80px;
+  margin: 20px;
+  border-radius: 10px;
+  border: none;  
+  text-decoration: none;
+}
+
+.h1-details {
+  text-align: center;
 }
