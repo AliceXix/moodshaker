@@ -335,7 +335,7 @@ h4 {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 5%;
+  margin: 5% 0;
   border-radius: 10px;
 }
 
@@ -349,8 +349,8 @@ h4 {
   background-color: #65dc9a;
   color: white;
   font-size: 1.5rem;
-  width: 150px;
-  height: 70%;
+  width: 200px;
+  height: 80%;
   border-radius: 10px;
   border: none;
   text-align: center;
@@ -359,14 +359,77 @@ h4 {
 
 .try-again button a {
   font-size: 1.2rem;
+  font-weight: 700;
   text-decoration: none;
+  color: white;
 }
 
 .try-again button:hover {
   margin: 10px;
   background-color: #ffa7c0;
-  width: 150px;
-  height: 70%;
+  color: white;
+  font-size: 1.5rem;
+  width: 200px;
+  height: 80%;
+  border-radius: 10px;
+  border: none;
+  text-align: center;
+  padding: 20px;
+}
+
+/* CREATE */
+
+.form-create {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.form-create label {
+  margin: 1.5%;
+}
+
+.form-create input  {
+  /* height: 40px; */
+  /* width: 100%; */
+  /* margin-left: 10%; */
+  margin-top: ;
   border-radius: 10px;
   border: none;
 }
+
+.title-select {
+  height: 40px;
+  width: 20vw;
+  border-radius: 10px;
+  border: none;
+  margin: auto;
+}
+
+.mood-select {
+  height: 80px;
+  width: 20vw;
+  margin-left: 10%;
+  border-radius: 10px;
+  border: none;
+  margin: auto;
+  padding: 10px;
+}
+
+.energy-select {
+  height: 20px;
+  width: 20vw;
+  border-radius: 10px;
+  border: none;
+  margin: auto;
+}
+
+.description-select {
+  height: 80px;
+  width: 20vw;
+  border-radius: 10px;
+  border: none;
+  margin: auto;
+}
+
+
