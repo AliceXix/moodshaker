@@ -14,6 +14,7 @@ router.get("/mood-shaker", isLoggedIn, (req, res, next)=>{
 
 
 router.get("/mood-giver", isLoggedIn, (req, res, next) => {
+  req.session.currUrl = req.originalUrl
   if (typeof req.query.mood === "string") {
     req.query.mood = [req.query.mood]
   }
@@ -57,12 +58,8 @@ router.get("/activities", isLoggedIn, (req, res, next)=>{
 
 
 router.get("/activities/:id/details", isLoggedIn, (req, res, next)=>{
-  console.log(req.session.currUrl)
   const currentUrl = req.session.currUrl
   req.session.currUrl = ''
-  console.log(`>>>>>>>>>>`)
-  console.log("this should be empty string", req.session.currUrl)
-  console.log("this should be url", currentUrl)
   Activity.findById(req.params.id)
     .populate('author')
     .then((activityFromDB)=>{
@@ -137,7 +134,7 @@ router.get("/activities/create", isLoggedIn, (req, res, next)=>{
 
   let user = req.session.user
 
-  res.render("create", {data: user})
+  res.render("create", { data: user})
   })
 
 
@@ -145,10 +142,15 @@ router.post("/activities/create", isLoggedIn, (req, res, next)=>{
   
   const { author, mood, energyLvl, title, description } = req.body
 
+  const currentUrl = req.session.currUrl
+  console.log(currentUrl)
+  req.session.currUrl = ''
+
   Activity.create({author, mood, energyLvl, title,description})
   .then( () => {
-    res.redirect("/mood-shaker")
+    res.redirect(`${currentUrl}`)
   })
+  //TODO
     .catch((err) => {
       console.log(`An error occured sending the data from form to DB:`, err)
       res.render("general-err", err)
@@ -176,7 +178,7 @@ router.post("/activity/:id/edit", isLoggedIn, isAuthor, (req, res, next)=>{
 
   Activity.findByIdAndUpdate(req.params.id, newDetails, {new: true })
   .then(()=> {
-    res.redirect("/mood-shaker")
+    res.redirect(`/activities/${req.params.id}/details`)
   })
   .catch((err) => {
     console.log(`An error has occured getting activity details from DB:`, err)

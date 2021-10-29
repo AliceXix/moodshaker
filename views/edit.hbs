@@ -1,10 +1,20 @@
-<form action="/activity/{{activityDetailsFromDB.id}}/edit" method="post">
-    <label>Title
-        <input type="text" name="title" value="{{activityDetailsFromDB.title}}" />
-    </label>
+<section class="display">
 
-    <label>Mood
-        <select name="mood" multiple>
+    <div class="titles">
+        <h1>Edit your activity</h1>
+        <h2>Better day by day</h2>
+    </div>
+
+<div class="form-register">
+<form class="form-create" action="/activity/{{activityDetailsFromDB.id}}/edit" method="post">
+    <div >
+        <label>Title
+            <input class="title-select" type="text" name="title" value="{{activityDetailsFromDB.title}}" />
+        </label>
+    </div>
+
+    <label>Mood <br>
+        <select class="mood-select" name="mood" multiple>
         
             <option value="happy">happy</option>
             <option value="procrastinating">procrastinating</option>
@@ -17,8 +27,8 @@
     </label>
 
 
-    <label>Energy Level
-        <select name="energyLvl">
+    <label>Energy Level <br>
+        <select class="energy-select" name="energyLvl">
             <option value="0">0</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -28,8 +38,8 @@
         </select>
     </label>
 
-    <label>Description
-        <input type="text" name="description" value="{{activityDetailsFromDB.description}}"/>
+    <label>Description <br>
+        <input class="description-select" type="text" name="description" value="{{activityDetailsFromDB.description}}"/>
     </label>
    
 
@@ -38,8 +48,10 @@
 
 </form>
 
-<button type="submit">
+</div>
+
+<button class="discover-button" type="submit">
     <a href="javascript:history.back()">Take me back</a>
 </button>
 
-
+</section>
