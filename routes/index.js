@@ -57,13 +57,19 @@ router.get("/activities", isLoggedIn, (req, res, next)=>{
 
 
 router.get("/activities/:id/details", isLoggedIn, (req, res, next)=>{
+  console.log(req.session.currUrl)
+  const currentUrl = req.session.currUrl
+  req.session.currUrl = ''
+  console.log(`>>>>>>>>>>`)
+  console.log("this should be empty string", req.session.currUrl)
+  console.log("this should be url", currentUrl)
   Activity.findById(req.params.id)
     .populate('author')
     .then((activityFromDB)=>{
 
       const authorIsUser = req.user._id == activityFromDB.author.id
 
-      res.render("details", { activityFromDB, authorIsUser} )
+      res.render("details", { activityFromDB, authorIsUser, currentUrl} )
     })
     .catch((err) => {
       console.log(`error display details activity from DB `, err)
@@ -75,16 +81,19 @@ router.post("/activities/:id/details", isLoggedIn, (req, res, next)=>{
   Activity.findById(req.params.id)
   .then(loggedActivity => {
     console.log(loggedActivity.createdAt)
-    User.findByIdAndUpdate(req.session.user._id, { $push: { activities: loggedActivity.title } }, { 'new': true })
+    return User.findByIdAndUpdate(req.session.user._id, { $push: { activities: loggedActivity.title } }, { 'new': true })
       .then(() => {
-        res.redirect("/mood-shaker")
-        //TODO
+        res.redirect(`/activities/${req.params.id}/details`)
       })
       .catch((err) => {
         console.log(`An error has occured logging activity to user in DB:`, err)
         res.render("general-err", err)
       })
   })
+    .catch((err) => {
+      console.log(`An error has occured logging activity to user in DB:`, err)
+      res.render("general-err", err)
+    })
 });
 
 router.post("/activities/:id/delete", isLoggedIn, isAuthor, (req, res, next)=>{
@@ -94,7 +103,6 @@ router.post("/activities/:id/delete", isLoggedIn, isAuthor, (req, res, next)=>{
       res.render("general-err", err)
     } else {
       res.redirect("/activities");
-      //TODO
     }
   });
 });
@@ -113,9 +121,10 @@ router.get("/user/:id/dashboard", isLoggedIn, (req, res, next)=>{
 
 
 router.get("/user/:id/created-activities", isLoggedIn, (req, res, next)=>{
+  req.session.currUrl = req.originalUrl
   Activity.find({ author: req.params.id})
     .then((createdActivitiesByUserFromDB)=>{
-    res.render("created-activities", {data: createdActivitiesByUserFromDB})
+      res.render("created-activities", { data: createdActivitiesByUserFromDB})
   })
     .catch((err) => {
       console.log(`An error has occured rendering the activities created by the user:`, err)

@@ -263,10 +263,10 @@ const activities = [
     },
         {
         author: '617aee233bae35b1f7b58d21',
-        mood: [""],
+        mood: ["sad", "creative", "procrastinating"],
         energyLvl: 2,
-        title: '',
-        description: '',
+        title: 'Go to a vintage shop',
+        description: 'In every city there are vintage shops. Have a look around, get yourself a nice coffee and put on some vintage clothes. It is fun!',
     },
     {
         author: '617aee233bae35b1f7b58d21',
@@ -277,10 +277,10 @@ const activities = [
     },
     {
         author: '617aee233bae35b1f7b58d21',
-        mood: [""],
+        mood: ["happy", "restless", "sad", "angry"],
         energyLvl: 4,
-        title: '',
-        description: '',
+        title: 'Dance',
+        description: 'The app Meetup is a great place to find groups of people with same interests. Go there and have a look for a dancing group nearby - I am sure there will be!! Dancing is way more physical than most people think. You will be surprised how good it is to let all your energy out and find inner rest. It also helps you express yourself and enhance feelings in within yourself.',
     },
 
 ]

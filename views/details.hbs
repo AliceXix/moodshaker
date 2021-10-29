@@ -14,9 +14,12 @@
         <a href="/activity/{{activityFromDB._id}}/edit">Edit this activity</a>
     </button>
 
+
     <form action="/activities/{{activityFromDB.id}}/delete" method="POST">
         <button type="submit">Delete activity</button>
     </form>
+
+
 {{/if}}
 
 <form action="/activities/{{activityFromDB.id}}/details" method="post">
