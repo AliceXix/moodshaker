@@ -1,17 +1,17 @@
-<section class="display">
-  <div class="activity-details">
+<section>
+  <div>
 
-    <h1 class="h1-details">{{activityFromDB.title}}</h1>
+    <h1>{{activityFromDB.title}}</h1>
 
-    <div id="box-details" class="box">
-      <div class="description">
-        <h3 class="labels">Description</h3>
-        <p class="card">{{activityFromDB.description}}</p>
+    <div>
+      <div>
+        <h3>Description</h3>
+        <p>{{activityFromDB.description}}</p>
       </div>
 
-      <div class="author">
-        <h3 class="labels">Creator</h3>
-        <p class="card-author">The author of this activity is {{activityFromDB.author.username}}</p>
+      <div>
+        <h3>Creator</h3>
+        <p>The author of this activity is {{activityFromDB.author.username}}</p>
       </div>
 
     </div>
@@ -31,7 +31,7 @@
 
   {{/if}}
   
-  <div class="buttons-bottom">
+  <div>
     <form action="/activities/{{activityFromDB.id}}/details" method="post">
     <button type="submit">Log activity</button>
   </form>

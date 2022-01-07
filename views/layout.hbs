@@ -5,26 +5,26 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
    <title>{{title}}</title>
-   <link rel="stylesheet" href="/stylesheets/style.css" />
+   <link rel="stylesheet" href="/stylesheets/main.css" />
    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Fredoka+One&display=swap"
       rel="stylesheet" />
 </head>
 
 <body>
 
-   <section class="layout">
+   <section>
 
-      <div class="logo">
+      <div>
 
          <a href="/"><img src="/images/logo-blcv2.png" alt="logo mood shaker"></a>
       </div>
 
 {{#if userId}}
-      <div class="buttons-panel">
-         <a class="link" id="dash" href="/user/{{userId._id}}/dashboard">Dashboard</a>
+      <div>
+         <a href="/user/{{userId._id}}/dashboard">Dashboard</a>
 
-         <button class="logout" type="submit">
-            <a class="link" href="/logout">Log out</a>
+         <button type="submit">
+            <a href="/logout">Log out</a>
          </button>
       </div>
 {{/if}}

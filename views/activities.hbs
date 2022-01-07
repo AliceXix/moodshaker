@@ -1,15 +1,15 @@
-<section class="display2">
-  <h1 class="titre-question">Results tailored to your mood...</h1>
+<section>
+  <h1>Results tailored to your mood...</h1>
 
-  <div class="result-content">
+  <div>
 
     {{#if data}}
       {{#each data}}
-        <div class="cards">
-          <h3 class="details-title">{{this.title}}</h3>
-          <a class="details-link" href="/activities/{{this.id}}/details">More details</a>
+        <div>
+          <h3>{{this.title}}</h3>
+          <a href="/activities/{{this.id}}/details">More details</a>
             {{!-- {{#each this.mood}}
-            <p class="results">{{this}}</p> 
+            <p>{{this}}</p> 
             {{/each}}        --}}
         </div>
       {{/each}}
@@ -21,9 +21,9 @@
 
   </div>
 
-  <div class="try-again">
+  <div>
     <button>
-      <a class="" href="activities/create">Create</a>
+      <a href="activities/create">Create</a>
     </button>
 
     <button>

@@ -1,63 +1,57 @@
-<section class="display">
-  <h1 class="titre-question">About today</h1>
+<section>
+  <h1>About today</h1>
 
-  <section class="questions">
-    <form class="main-form" action="/mood-giver" method="get">
+    <form action="/mood-giver" method="get">
 
-      <div class="container">
+      <div>
         <h2>What is your mood ?</h2>
         <br />
-        <div class="moods">
+        <div>
 
-          <div class="happy">
+          <div>
             <h3>&#128512</h3><h4>Happy</h4><br />
             <input
-              class="vignettes"
               type="checkbox"
               name="mood"
               value="happy"
             />
           </div>
 
-          <div class="sad">
+          <div>
             <h3>&#128533</h3><h4>Sad</h4><br />
-            <input class="vignettes" type="checkbox" name="mood" value="sad" />
+            <input  type="checkbox" name="mood" value="sad" />
           </div>
 
-          <div class="creative">
+          <div>
             <h3>&#129321</h3><h4>Creative</h4><br />
             <input
-              class="vignettes"
               type="checkbox"
               name="mood"
               value="creative"
             />
           </div>
 
-          <div class="procrastinating">
+          <div>
             <h3>&#128579</h3><h4>Procrastinating</h4><br />
             <input
-              class="vignettes"
               type="checkbox"
               name="mood"
               value="procrastinating"
             />
           </div>
 
-          <div class="angry">
+          <div>
             <h3>&#128544</h3><h4>Angry</h4><br />
             <input
-              class="vignettes"
               type="checkbox"
               name="mood"
               value="angry"
             />
           </div>
 
-          <div class="restless">
+          <div>
             <h3>&#129322</h3><h4>Restless</h4><br />
             <input
-              class="vignettes"
               type="checkbox"
               name="mood"
               value="restless"
@@ -73,23 +67,23 @@
       <label>
         <h2>What is your energy level ?</h2>
         <br />
-        <div class="energy">
-          <div class="energy0">
+        <div>
+          <div>
             <input type="radio" name="energyLvl" value="0" />0
           </div>
-          <div class="energy1">
+          <div>
             <input type="radio" name="energyLvl" value="1" />1
           </div>
-          <div class="energy2">
+          <div>
             <input type="radio" name="energyLvl" value="2" />2
           </div>
-          <div class="energy3">
+          <div>
             <input type="radio" name="energyLvl" value="3" />3
           </div>
-          <div class="energy4">
+          <div>
             <input type="radio" name="energyLvl" value="4" />4
           </div>
-          <div class="energy5">
+          <div >
             <input type="radio" name="energyLvl" value="5" />5
           </div>
 
@@ -98,11 +92,10 @@
       </label>
       <br />
 
-      <button class="submit-button" type="submit">Submit
+      <button type="submit">Submit
         {{! <a href="/activities">Shake my mood!</a> }}
       </button>
 
     </form>
-  </section>
 
 </section>
