@@ -12,21 +12,16 @@
 
 <body>
 
-   <section>
+   <section class="layout">
 
-      <div>
-
-         <a href="/"><img src="/images/logo-blcv2.png" alt="logo mood shaker"></a>
-      </div>
+         <a class="logo" href="/"><img src="/images/logo-blcv2.png" alt="logo mood shaker"></a>
 
 {{#if userId}}
-      <div>
-         <a href="/user/{{userId._id}}/dashboard">Dashboard</a>
+         <a class="button" href="/user/{{userId._id}}/dashboard">Dashboard</a>
 
-         <button type="submit">
-            <a href="/logout">Log out</a>
+         <button class="button" type="submit">
+            <a href="/logout">Logout</a>
          </button>
-      </div>
 {{/if}}
 
 
