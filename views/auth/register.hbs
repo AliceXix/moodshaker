@@ -4,25 +4,27 @@
     <h2>Welcome to MoodShaker</h2>
   </div>
 
-  <div>
+  <div class="box">
     <div>
-      <p>Already have an account ? <br /><a href="/login">Login</a></p>
+      <p>Already have an account ?</p><br /><a href="/login">Login</a>
     </div>
 
-    <form action="/" method="POST">
-      <label>
 
+    <form action="/" method="POST">
+
+    <div class="user-input">
+      <label>
         <input type="text" name="username" placeholder="Username" />
       </label>
       <label>
         <input type="email" name="mail" placeholder="Mail" />
       </label>
       <label>
-
         <input type="password" name="password" placeholder="Password" />
       </label>
+    </div>
 
-      <button type="submit">Submit</button>
+      <button class="button" type="submit">Submit</button>
     </form>
   </div>
 
