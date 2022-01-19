@@ -19,7 +19,7 @@ h1 {
 
 h2 {
   font-size: 2.5rem;
-  color: #ffa7c0;
+  color: white;
   font-family: "Architects Daughter", cursive;
   margin: auto;
   padding: 1em;
@@ -82,12 +82,26 @@ button {
 /* the box */
 
 
-.box {
-    background-color: rgb(255, 211, 0);
-    max-width: 55%;
-    padding: 2em;
-    margin: auto;
-    border-radius: 15px;
+@media screen and (min-width: 600px) {
+    .box {
+        background-color: rgb(255, 211, 0);
+        max-width: 35%;
+        padding: 2em;
+        margin: auto;
+        border-radius: 15px;
+        margin-bottom: 5em;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .box {
+        background-color: rgb(255, 211, 0);
+        max-width: 55%;
+        padding: 2em;
+        margin: auto;
+        border-radius: 15px;
+        margin-bottom: 5em;
+    }
 }
 
 .widgets {
@@ -121,10 +135,11 @@ button {
     color: #fff;
     font-size: 1.3rem;
     border-radius: 5px;
-    padding: 0.5em 1em;
+    padding: 0.8em 1.2em;
     display: flex;
     flex-direction: row;
     justify-content: center;
+    min-width: 12vw;
 }
 
 .box p {
@@ -151,4 +166,32 @@ button {
     justify-content: space-around;
     min-height: 20vh;
     margin: 1.5em 0;
+}
+
+label {
+    padding: 0.6em;
+    border-radius: 5px;
+}
+
+@media screen and (min-width: 600px) {
+    .button-together {
+        display: flex;
+        justify-content: space-around;
+        max-width: 35%;
+        margin: auto;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    .button-together {
+        display: flex;
+        justify-content: space-around;
+        max-width: 35%;
+        margin: auto;
+        flex-wrap: wrap;
+    }
+
+    button {
+        margin: 1em;
+    }
 }
