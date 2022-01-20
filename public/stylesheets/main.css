@@ -201,3 +201,19 @@ label {
         margin: 1em;
     }
 }
+
+.details {
+    text-align: center;
+    margin: 1em auto;
+    color: #fff;
+    padding: 1.2em;
+}
+
+.details p {
+    color: #352005;
+    padding-bottom: 1.5em;
+}
+
+.details h4 {
+    padding: 1.2em;
+}

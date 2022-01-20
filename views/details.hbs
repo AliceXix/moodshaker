@@ -3,14 +3,14 @@
 
     <h1>{{activityFromDB.title}}</h1>
 
-    <div>
+    <div class="box details">
       <div>
-        <h3>Description</h3>
+        <h4>Description</h4>
         <p>{{activityFromDB.description}}</p>
       </div>
 
       <div>
-        <h3>Creator</h3>
+        <h4>Creator</h4>
         <p>The author of this activity is {{activityFromDB.author.username}}</p>
       </div>
 
@@ -33,7 +33,7 @@
   
   <div>
     <form action="/activities/{{activityFromDB.id}}/details" method="post">
-    <button type="submit">Log activity</button>
+    <button class="button" type="submit">Log activity</button>
   </form>
 
   <button type="submit">
