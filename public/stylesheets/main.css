@@ -145,6 +145,7 @@ button {
     flex-direction: row;
     justify-content: center;
     min-width: 12vw;
+    margin-bottom: 5em;
 }
 
 .box p {

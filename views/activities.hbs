@@ -1,16 +1,13 @@
 <section>
   <h1>Results tailored to your mood...</h1>
 
-  <div>
+  <div class="box widgets">
 
     {{#if data}}
       {{#each data}}
         <div>
           <h3>{{this.title}}</h3>
           <a href="/activities/{{this.id}}/details">More details</a>
-            {{!-- {{#each this.mood}}
-            <p>{{this}}</p> 
-            {{/each}}        --}}
         </div>
       {{/each}}
 
