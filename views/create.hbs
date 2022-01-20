@@ -1,57 +1,67 @@
 <section>
-    <div>
+  <div>
     <h1>Create your own activity</h1>
-    <h2>Personalize your MoodShaker</h2>
+
   </div>
 
-    <div>
-        <form action="/activities/create" method="post">
+  <div class="box">
+    <h2>Personalize your MoodShaker</h2>
+    <form class="user-input" action="/activities/create" method="post">
 
-        <label>
-        <input type="text" name="title" placeholder="Title"/>
-        </label>
+      <input type="text" name="title" placeholder="Title" />
 
-        <label>Mood <br>
+      <textarea
+        type="textarea"
+        name="description"
+        placeholder="Description"
+        rows="4"
+        cols="30"
+      ></textarea>
+
+     
+        <h6>Mood</h6>
+        <br />
         <select name="mood" multiple>
-            <option value="happy">happy</option>
-            <option value="procrastinating">procrastinating</option>
-            <option value="restless">restless</option>
-            <option value="sad">sad</option>
-            <option value="creative">creative</option>
-            <option value="angry">angry</option>
+          <option value="happy">happy</option>
+          <option value="procrastinating">procrastinating</option>
+          <option value="restless">restless</option>
+          <option value="sad">sad</option>
+          <option value="creative">creative</option>
+          <option value="angry">angry</option>
         </select>
-        </label>
-
-        <label>Energy Level <br>
-        <select name="energyLvl">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select>
-        </label>
-
-        <label>
-        <input type="text" name="description" placeholder="Description" />
-        </label>
-
-        <label>Author <br>
     
-        <select  name="author">
-            <option value="{{data._id}}">Myself</option>
+
+     
+        <h6>Energy Level</h6>
+        <br />
+        <select name="energyLvl">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
         </select>
-        </label>
 
 
-        <button type="submit">Create</button>
+
+        <h6>Author</h6>
+        <br />
+
+        <select name="author">
+          <option value="{{data._id}}">Myself</option>
+        </select>
+
 
     </form>
   </div>
 
-  <button type="submit">
-    <a href="javascript:history.back()">Take me back</a>
-  </button>
+  <div class="button-together">
+    <button class="button" type="submit">Create</button>
+
+    <button class="button" type="submit">
+      <a href="javascript:history.back()">Take me back</a>
+    </button>
+  </div>
 
 </section>

@@ -36,6 +36,23 @@ h4 {
     margin: 0.3em;
 }
 
+h6 {
+    color: #352005;
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 1em 1em 0 1em;
+    padding-top: 0.8em;
+}
+
+textarea {
+    max-width: 80%;
+    margin: 1.2em 0 1.2em 0;
+}
+
+select {
+    align-self: center;
+}
+
 @media screen and (min-width: 600px) {
     .layout {
         background-color: #65dc9a;
@@ -216,4 +233,8 @@ label {
 
 .details h4 {
     padding: 1.2em;
+}
+
+.input-pairs {
+    margin: 1.2em 0 1.2em 0;
 }
