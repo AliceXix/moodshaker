@@ -5,15 +5,19 @@
 
 
 {{#if infos.activities}}
-<h3>Your passed activities:</h3>
+<h4>Your passed activities:</h4>
 
+<div class="widgets">
 <ul>
 {{#each infos.activities}}
 
+<div class="widget">
 <li>{{this}}</li>
+</div>
 
 {{/each}}
 </ul>
+</div>
 
 {{else}}
 
