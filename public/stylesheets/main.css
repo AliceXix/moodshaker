@@ -32,6 +32,7 @@ h3 {
 }
 
 h4 {
+    color: #352005;
     font-size: 1.5rem;
     margin: 0.3em;
 }
@@ -51,6 +52,10 @@ textarea {
 
 select {
     align-self: center;
+}
+
+li {
+    list-style: none;
 }
 
 @media screen and (min-width: 600px) {
