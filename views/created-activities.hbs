@@ -1,19 +1,26 @@
+<h1>Here your created activities</h1>
 
-{{#each data}}
+<div class="box">
+  {{#if data}}
+    {{#each data}}
 
-    <div>
+      <div>
 
         <p>{{this.title}}</p>
 
-    </div>
+      </div>
 
-<button>
-    <a href="/activities/{{this.id}}/details">see more</a>
-</button>
+      <button class="button">
+        <a href="/activities/{{this.id}}/details">see more</a>
+      </button>
 
+    {{/each}}
 
-{{/each}}
+  {{else}}
+    <p>You did not create any activities.. yet!</p>
+  {{/if}}
+</div>
 
-<button type="submit">
-    <a href="javascript:history.back()">Take me back</a>
+<button class="button" type="submit">
+  <a href="javascript:history.back()">Take me back</a>
 </button>
