@@ -1,6 +1,7 @@
-<p>This is the dashboard</p>
+<h1>Welcome to your dashboard</h1>
 
-<p>hello {{infos.username}}</p>
+<div class="box">
+<h2>Greetings {{infos.username}} !</h2>
 
 
 {{#if infos.activities}}
@@ -19,15 +20,18 @@
 <p>You don't have any activities logged yet...</p>
 
 {{/if}}
+</div>
 
-<button>
-    <a href="/user/{{infos._id}}/created-activities">My created activities</a>
+<div class="threesome-buttons">
+<button class="button">
+    <a href="/user/{{infos._id}}/created-activities">Created activities</a>
 </button>
 
-<button>
+<button class="button">
     <a href="/mood-shaker">Shake it!</a>
 </button>
 
-<button type="submit">
+<button class="button" type="submit">
     <a href="javascript:history.back()">Take me back</a>
 </button>
+</div>
