@@ -4,21 +4,22 @@
   {{#if data}}
     {{#each data}}
 
+<div class="widgets">
       <div>
 
-        <p>{{this.title}}</p>
-
-      </div>
-
+        <h2 id="pink">{{this.title}}</h2>
       <button class="button">
-        <a href="/activities/{{this.id}}/details">see more</a>
+        <a id="white" href="/activities/{{this.id}}/details">see more</a>
       </button>
+      </div>
 
     {{/each}}
 
   {{else}}
     <p>You did not create any activities.. yet!</p>
   {{/if}}
+
+  </div>
 </div>
 
 <button class="button" type="submit">

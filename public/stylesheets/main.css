@@ -251,3 +251,18 @@ label {
 .input-pairs {
     margin: 1.2em 0 1.2em 0;
 }
+
+.hr {
+    max-width: 22%;
+    background-color: #352005;
+    height: 1px;
+    border: none;
+}
+
+#white {
+    color: #fff;
+}
+
+#pink {
+    color: #ffa7c0;
+}
