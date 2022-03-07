@@ -4,13 +4,15 @@
   {{#if data}}
     {{#each data}}
 
-<div class="widgets">
-      <div>
+{{!-- <div class="widgets"> --}}
+      <div class="widgets">
+        <div>
 
         <h2 id="pink">{{this.title}}</h2>
-      <button class="button">
-        <a id="white" href="/activities/{{this.id}}/details">see more</a>
-      </button>
+        <button class="button">
+          <a id="white" href="/activities/{{this.id}}/details">see more</a>
+        </button>
+        </div>
       </div>
 
     {{/each}}
@@ -20,8 +22,10 @@
   {{/if}}
 
   </div>
-</div>
+{{!-- </div> --}}
 
+<div class="button-together">
 <button class="button" type="submit">
   <a href="javascript:history.back()">Take me back</a>
 </button>
+</div>

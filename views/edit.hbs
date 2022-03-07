@@ -2,18 +2,19 @@
 
     <div>
         <h1>Edit your activity</h1>
-        <h2>Better day by day</h2>
+
     </div>
 
-<div>
-<form action="/activity/{{activityDetailsFromDB.id}}/edit" method="post">
+<div class="box">
+            <h2>Better day by day</h2>
+<form class="user-input" action="/activity/{{activityDetailsFromDB.id}}/edit" method="post">
     <div >
-        <label >Title <br>
+        <label ><h6>Title</h6> <br>
             <input type="text" name="title" value="{{activityDetailsFromDB.title}}" />
         </label>
     </div>
 
-    <label >Mood <br>
+    <label ><h6>Mood</h6> <br>
         <select name="mood" multiple>
         
             <option value="happy">happy</option>
@@ -27,7 +28,7 @@
     </label>
 
 
-    <label >Energy Level <br>
+    <h6>Energy Level</h6> <br>
         <select name="energyLvl">
             <option value="0">0</option>
             <option value="1">1</option>
@@ -36,22 +37,21 @@
             <option value="4">4</option>
             <option value="5">5</option>
         </select>
-    </label>
 
-    <label >Description <br>
-        <input type="text" name="description" value="{{activityDetailsFromDB.description}}"/>
-    </label>
-   
+    <h6>Description</h6> <br>
+        <textarea type="textarea" name="description"  rows="4" cols="30">{{activityDetailsFromDB.description}}</textarea>
 
-    <button type="submit">Edit</button>
 
 
 </form>
 
 </div>
 
-<button type="submit">
+<div class="button-together">
+        <button class="button" type="submit">Edit</button>
+<button class="button" type="submit">
     <a href="javascript:history.back()">Take me back</a>
 </button>
+</div>
 
 </section>

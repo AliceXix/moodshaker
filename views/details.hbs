@@ -17,29 +17,28 @@
     </div>
 
   </div>
+  <p>this is current URL {{currentUrl}}</p>
 
 <div class="button-together">
   {{#if authorIsUser}}
     {{#if currentUrl}}
-      <button class="button" type="submit">
-        <a href="/activity/{{activityFromDB._id}}/edit">Edit this activity</a>
+      <button type="submit">
+        <a class="button-link" href="/activity/{{activityFromDB._id}}/edit">Edit this activity</a>
       </button>
 
       <form action="/activities/{{activityFromDB.id}}/delete" method="POST">
-        <button class="button" type="submit">Delete activity</button>
+        <button class="button" type="submit">Delete</button>
       </form>
     {{/if}}
 
   {{/if}}
-  </div>
   
-  <div class="button-together">
     <form action="/activities/{{activityFromDB.id}}/details" method="post">
     <button class="button" type="submit">Log activity</button>
   </form>
 
-  <button class="button" type="submit">
-    <a href="javascript:history.back()">Take me back</a>
+  <button  type="submit">
+    <a class="button-link" href="javascript:history.back()">Take me back</a>
   </button>
   </div>
 
