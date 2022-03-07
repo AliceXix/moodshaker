@@ -59,14 +59,18 @@ router.get("/activities", isLoggedIn, (req, res, next)=>{
 
 router.get("/activities/:id/details", isLoggedIn, (req, res, next)=>{
   const currentUrl = req.session.currUrl
-  req.session.currUrl = ''
+  //req.session.currUrl = ''
+
+  console.log(req.session)
   Activity.findById(req.params.id)
     .populate('author')
     .then((activityFromDB)=>{
-
       const authorIsUser = req.user._id == activityFromDB.author.id
-
-      res.render("details", { activityFromDB, authorIsUser, currentUrl} )
+      res.render("details", { activityFromDB, authorIsUser, currentUrl })
+      return currentUrl
+    })
+    .then((currentUrl) => {
+      console.log(currentUrl)
     })
     .catch((err) => {
       console.log(`error display details activity from DB `, err)
